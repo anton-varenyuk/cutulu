@@ -1,0 +1,21 @@
+.task-details {
+  padding: 20px;
+  border-radius: 3px;
+  background-color: darken(#fff, 5%);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.43);
+
+  .task-details--title {
+    margin: 5px 0;
+    font-size: 18px;
+    font-weight: normal;
+    text-transform: uppercase;
+  }
+  .task-details--text {
+    display: block;
+    margin-top: 10px;
+  }
+  .task-details--name {
+    font-weight: bold;
+  }
+
+}
