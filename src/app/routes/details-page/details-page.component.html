@@ -1,6 +1,11 @@
 <div class="task-details">
   <h2 class="task-details--title">{{pageTitle}}</h2>
   <span class="task-details--text task-details--name">{{task.name}}</span>
-  <span class="task-details--text">{{task.details}}</span>
+  <div class="task-details--container" *ngIf="this.editEnabled === true">
+    <textarea class="task-details--text" [(ngModel)]="task.details" >{{task.details}}</textarea>
+    <button (click)="save()">OK</button>
+  </div>
+  <span class="task-details--text" (click)="edit()" *ngIf="this.editEnabled === false" >{{task.details}}</span>
 </div>
 
+<!--TODO: make textarea fit content height-->
