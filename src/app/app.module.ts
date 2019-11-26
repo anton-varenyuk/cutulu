@@ -9,9 +9,9 @@ import { AddTaskComponent } from './components/add-task/add-task.component';
 import { ListPageComponent } from './routes/list-page/list-page.component';
 import { WelcomePageComponent } from './routes/welcome-page/welcome-page.component';
 import { ErrorPageComponent } from './routes/error-page/error-page.component';
-import { TaskDetailsComponent } from './routes/task-details/task-details.component';
+import { DetailsPageComponent } from './routes/details-page/details-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { CreateTaskPageComponent } from './routes/create-task-page/create-task-page.component';
+import { CreatePageComponent } from './routes/create-page/create-page.component';
 import { GamePageComponent } from './routes/game-page/game-page.component';
 
 @NgModule({
@@ -22,9 +22,9 @@ import { GamePageComponent } from './routes/game-page/game-page.component';
     ListPageComponent,
     WelcomePageComponent,
     ErrorPageComponent,
-    TaskDetailsComponent,
+    DetailsPageComponent,
     NavbarComponent,
-    CreateTaskPageComponent,
+    CreatePageComponent,
     GamePageComponent,
   ],
   imports: [

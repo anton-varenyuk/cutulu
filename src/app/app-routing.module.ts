@@ -3,14 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { WelcomePageComponent } from './routes/welcome-page/welcome-page.component';
 import { ListPageComponent } from './routes/list-page/list-page.component';
 import { ErrorPageComponent } from './routes/error-page/error-page.component';
-import { TaskDetailsComponent } from './routes/task-details/task-details.component';
-import { CreateTaskPageComponent } from './routes/create-task-page/create-task-page.component';
+import { DetailsPageComponent } from './routes/details-page/details-page.component';
+import { CreatePageComponent } from './routes/create-page/create-page.component';
 import { GamePageComponent } from './routes/game-page/game-page.component';
 
 const routes: Routes = [
-  { path: 'list/:id/edit', component: TaskDetailsComponent },
-  { path: 'list/:id', component: TaskDetailsComponent },
-  { path: 'add', component: CreateTaskPageComponent },
+  { path: 'list/:id/edit', component: DetailsPageComponent },
+  { path: 'list/:id', component: DetailsPageComponent },
+  { path: 'add', component: CreatePageComponent },
   { path: 'game', component: GamePageComponent },
   { path: 'list', component: ListPageComponent },
   { path: 'welcome', component: WelcomePageComponent },

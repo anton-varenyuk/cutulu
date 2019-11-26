@@ -1,5 +1,5 @@
 <ul class="task-list">
-  <li *ngFor="let task of taskList" class="task">
+  <li *ngFor="let task of taskList; let i = index" class="task">
     <div class="task--description">
 
       <a [routerLink]="['/list', task.id]" class="task--text">{{task.name}}</a>
@@ -16,7 +16,7 @@
 
       <div class="task--description-controls">
         <a [routerLink]="['/list', task.id, 'edit']" class="task--done-marker">edit</a>
-        <a (click)="remove(task)" class="task--done-marker">done</a>
+        <a (click)="remove(i)" class="task--done-marker">done</a>
       </div>
     </div>
   </li>

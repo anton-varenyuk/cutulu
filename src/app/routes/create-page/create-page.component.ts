@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {TaskService} from '../../task.service';
+import { TaskService } from '../../services/task.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-task-page',
-  templateUrl: './create-task-page.component.html',
-  styleUrls: ['./create-task-page.component.scss']
+  templateUrl: './create-page.component.html',
+  styleUrls: ['./create-page.component.scss']
 })
-export class CreateTaskPageComponent implements OnInit {
+export class CreatePageComponent implements OnInit {
   public name: string = '';
   public desc: string = '';
 

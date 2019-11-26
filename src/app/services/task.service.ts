@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ITask } from './ITask';
+import { ITask } from '../interfaces/ITask';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,10 +8,10 @@ import { ITask } from './ITask';
 export class TaskService {
 
   public taskList: Array<ITask>;
-  private storage = window.localStorage;
-  constructor() {
-    if (this.storage.getItem('taskList')) {
-      this.taskList = JSON.parse(this.storage.getItem('taskList'));
+
+  constructor(private storageService: StorageService) {
+    if (this.storageService.get('taskList')) {
+      this.taskList = JSON.parse(this.storageService.get('taskList'));
       this.saveListState();
     } else {
       this.taskList = [{
@@ -21,6 +22,7 @@ export class TaskService {
       this.saveListState();
     }
   }
+
   public getTaskList() {
     return this.taskList;
   }
@@ -31,11 +33,11 @@ export class TaskService {
     this.taskList.push({name: n, id: Date.now(), details: d});
     this.saveListState();
   }
-  public removeTask(model: ITask): void {
-    this.taskList.splice(this.taskList.indexOf(model), 1);
+  public removeTask(index: number): void {
+    this.taskList.splice(index, 1);
     this.saveListState();
   }
   private saveListState(): void {
-    this.storage.setItem('taskList', JSON.stringify(this.taskList));
+    this.storageService.set('taskList', JSON.stringify(this.taskList));
   }
 }

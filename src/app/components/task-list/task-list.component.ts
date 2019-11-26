@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskService } from '../../task.service';
-import { ITask } from '../../ITask';
+import { TaskService } from '../../services/task.service';
+import { ITask } from '../../interfaces/ITask';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,8 +17,8 @@ export class TaskListComponent implements OnInit {
   ngOnInit() {
     this.taskList = this.taskListService.getTaskList();
   }
-  public remove(item: ITask): void {
-    this.taskListService.removeTask(item);
+  public remove(index: number): void {
+    this.taskListService.removeTask(index);
   }
   // public navigate(item: ITask) {
   //   this.router.navigate([{ outlets: { details: ['list', item.id]} }]);
