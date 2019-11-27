@@ -6,11 +6,13 @@ import { ErrorPageComponent } from './routes/error-page/error-page.component';
 import { DetailsPageComponent } from './routes/details-page/details-page.component';
 import { CreatePageComponent } from './routes/create-page/create-page.component';
 import { GamePageComponent } from './routes/game-page/game-page.component';
+import { RainPageComponent } from './routes/rain-page/rain-page.component';
 
 const routes: Routes = [
   { path: 'list/:id', component: DetailsPageComponent },
   { path: 'add', component: CreatePageComponent },
   { path: 'game', component: GamePageComponent },
+  { path: 'rain', component: RainPageComponent },
   { path: 'list', component: ListPageComponent },
   { path: 'welcome', component: WelcomePageComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
