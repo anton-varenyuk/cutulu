@@ -13,6 +13,7 @@ import { DetailsPageComponent } from './routes/details-page/details-page.compone
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CreatePageComponent } from './routes/create-page/create-page.component';
 import { GamePageComponent } from './routes/game-page/game-page.component';
+import { RainPageComponent } from './routes/rain-page/rain-page.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { GamePageComponent } from './routes/game-page/game-page.component';
     NavbarComponent,
     CreatePageComponent,
     GamePageComponent,
+    RainPageComponent,
   ],
   imports: [
     BrowserModule,
