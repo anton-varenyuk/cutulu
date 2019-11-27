@@ -1,6 +1,22 @@
 <div class="task-details">
+
+
   <h2 class="task-details--title">{{pageTitle}}</h2>
-  <span class="task-details--text task-details--name">{{task.name}}</span>
-  <span class="task-details--text">{{task.details}}</span>
+
+  <div class="editor" *ngIf="editNameEnabled === true">
+    <textarea class="task-details--name" [(ngModel)]="task.name">{{task.name}}</textarea>
+    <button (click)="saveName()" class="ok-button">OK</button>
+  </div>
+  <span class="task-details--text task-details--name" (click)="editName()" *ngIf="editNameEnabled === false">{{task.name}}</span>
+
+
+  <div class="editor" *ngIf="this.editDetailsEnabled === true">
+    <textarea class="task-details--text" [(ngModel)]="task.details" >{{task.details}}</textarea>
+    <button (click)="saveDetails()" class="ok-button">OK</button>
+  </div>
+  <span class="task-details--text" (click)="editDetails()" *ngIf="this.editDetailsEnabled === false" >{{task.details}}</span>
+
+  <a [routerLink]="['/list']" class="nav-back">back</a>
 </div>
 
+<!--TODO: make textarea fit content height-->

@@ -8,7 +8,6 @@ import { CreatePageComponent } from './routes/create-page/create-page.component'
 import { GamePageComponent } from './routes/game-page/game-page.component';
 
 const routes: Routes = [
-  { path: 'list/:id/edit', component: DetailsPageComponent },
   { path: 'list/:id', component: DetailsPageComponent },
   { path: 'add', component: CreatePageComponent },
   { path: 'game', component: GamePageComponent },
