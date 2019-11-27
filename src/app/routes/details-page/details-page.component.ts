@@ -11,7 +11,8 @@ import { ITask } from '../../interfaces/ITask';
 export class DetailsPageComponent implements OnInit {
   private pageTitle = 'Task details';
   private task: ITask;
-  private editEnabled: boolean = false;
+  private editDetailsEnabled: boolean = false;
+  private editNameEnabled: boolean = false;
 
   constructor( private taskService: TaskService,
                private route: ActivatedRoute) { }
@@ -22,10 +23,18 @@ export class DetailsPageComponent implements OnInit {
     console.log(this.task);
   }
 
-  edit(): void {
-    this.editEnabled = true;
+  editDetails(): void {
+    this.editDetailsEnabled = true;
   }
-  save(): void {
-    this.editEnabled = false;
+  saveDetails(): void {
+    this.editDetailsEnabled = false;
+    this.taskService.saveListState();
+  }
+  editName(): void {
+    this.editNameEnabled = true;
+  }
+  saveName(): void {
+    this.editNameEnabled = false;
+    this.taskService.saveListState();
   }
 }

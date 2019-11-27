@@ -37,7 +37,7 @@ export class TaskService {
     this.taskList.splice(index, 1);
     this.saveListState();
   }
-  private saveListState(): void {
+  public saveListState(): void {
     this.storageService.set('taskList', JSON.stringify(this.taskList));
   }
 }

@@ -4,21 +4,72 @@
   background-color: darken(#fff, 5%);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.43);
 
+  .nav-back {
+    display: inline-block;
+    color: #3c63be;
+    font-style: italic;
+    text-decoration: none;
+    border: 1px solid #3c63be;
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin: 20px 0 0 0;
+    cursor: pointer;
+    transition: all .1s ease;
+    &:active {
+      animation: flash 1s linear;
+    }
+    &:hover {
+      text-decoration: none;
+      background-color: #3c63be;
+      color: #fff;
+    }
+  }
+
   .task-details--title {
-    margin: 5px 0;
-    font-size: 18px;
+    margin: 5px 0 30px;
+    font-size: 16px;
     font-weight: normal;
     text-transform: uppercase;
   }
   .task-details--text {
     display: block;
     margin-top: 10px;
-    font-size: 18px;
-    width: 100%;
-    max-width: 100%;
+    font-size: 14px;
+  }
+  span.task-details--text {
+    cursor: pointer;
   }
   .task-details--name {
     font-weight: bold;
   }
+  textarea {
+    min-width: 100%;
+    max-width: 100%;
+    font-size: 14px;
+    border: none;
+    outline: none;
+  }
+  .ok-button {
+    border: 1px solid #59cc6d;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background: transparent;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 5px 0;
+    align-self: center;
 
+    &:hover {
+      background-color: #59cc6d;
+    }
+  }
+  .editor {
+    display: flex;
+    flex-direction: column;
+  }
+
+  span {
+    padding: 10px;
+    border-bottom: 1px solid #d2d2d2;
+  }
 }

@@ -3,7 +3,6 @@
     <div class="task--description">
 
       <a [routerLink]="['/list', task.id]" class="task--text">{{task.name}}</a>
-      <!--      <a (click)="navigate(item)" class="task&#45;&#45;text">{{item.name}}</a>-->
     </div>
 
     <div>
@@ -15,10 +14,9 @@
       </div>
 
       <div class="task--description-controls">
-        <a [routerLink]="['/list', task.id, 'edit']" class="task--done-marker">edit</a>
+        <a [routerLink]="['/list', task.id]" class="task--done-marker">edit</a>
         <a (click)="remove(i)" class="task--done-marker">done</a>
       </div>
     </div>
   </li>
 </ul>
-<!--[{ outlets: { popup: ['compose'] } }]-->
