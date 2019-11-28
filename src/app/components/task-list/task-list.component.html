@@ -14,8 +14,8 @@
       </div>
 
       <div class="task--description-controls">
-        <a [routerLink]="['/list', task.id]" class="task--done-marker">edit</a>
-        <a (click)="remove(i)" class="task--done-marker">done</a>
+        <a [routerLink]="['/list', task.id]" class="task--done-marker">details</a>
+        <a (click)="remove(i)" class="delete-marker">X</a>
       </div>
     </div>
   </li>

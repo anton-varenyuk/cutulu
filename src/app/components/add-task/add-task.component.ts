@@ -15,8 +15,19 @@ export class AddTaskComponent implements OnInit {
 
   ngOnInit() { }
 
-  quickAddTask() {
-    this.taskListService.addTask(this.name, '');
-    this.name = '';
+  private quickAddTask(): void {
+    if (this.validateInput()) {
+      this.taskListService.addTask(this.name, '');
+      this.name = '';
+    } else {
+      alert ('validation error');
+    }
+  }
+  private validateInput(): boolean {
+    if (this.name === undefined || this.name.length === 0) {
+      return false;
+    } else {
+      return true;
+    }
   }
 }

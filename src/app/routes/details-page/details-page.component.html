@@ -1,22 +1,33 @@
 <div class="task-details">
-
-
-  <h2 class="task-details--title">{{pageTitle}}</h2>
-
-  <div class="editor" *ngIf="editNameEnabled === true">
-    <textarea class="task-details--name" [(ngModel)]="task.name">{{task.name}}</textarea>
-    <button (click)="saveName()" class="ok-button">OK</button>
+  <div class="navigation">
+    <a [routerLink]="['/list']" class="nav-back">back</a>
   </div>
-  <span class="task-details--text task-details--name" (click)="editName()" *ngIf="editNameEnabled === false">{{task.name}}</span>
 
-
-  <div class="editor" *ngIf="this.editDetailsEnabled === true">
-    <textarea class="task-details--text" [(ngModel)]="task.details" >{{task.details}}</textarea>
-    <button (click)="saveDetails()" class="ok-button">OK</button>
+  <div class="task-details--item">
+    <span class="task-label">Task name</span>
+    <div class="editor" *ngIf="editNameEnabled === true">
+      <textarea class="task-details--text" [(ngModel)]="task.name" autofocus>{{task.name}}</textarea>
+      <button (click)="saveName()" class="ok-button">OK</button>
+    </div>
+    <span class="task-details--text task-details--name" (click)="editName()" *ngIf="editNameEnabled === false">{{task.name}}</span>
   </div>
-  <span class="task-details--text" (click)="editDetails()" *ngIf="this.editDetailsEnabled === false" >{{task.details}}</span>
 
-  <a [routerLink]="['/list']" class="nav-back">back</a>
+  <div class="task-details--item">
+    <span class="task-label">Task details</span>
+    <div class="editor" *ngIf="this.editDetailsEnabled === true">
+      <textarea class="task-details--text" [(ngModel)]="task.details" autofocus>{{task.details}}</textarea>
+      <button (click)="saveDetails()" class="ok-button">OK</button>
+    </div>
+    <span class="task-details--text" (click)="editDetails()" *ngIf="this.editDetailsEnabled === false" >
+    <span *ngIf="task.details.length === 0"> Click here to add the details</span>
+      {{task.details}}
+    </span>
+  </div>
+
+  <div class="task-details--controls">
+    <button (click)="removeTask()">Delete task</button>
+  </div>
+
 </div>
 
 <!--TODO: make textarea fit content height-->
