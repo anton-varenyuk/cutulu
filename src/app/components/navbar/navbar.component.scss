@@ -1,9 +1,15 @@
+.navbar {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
 .navbar ul {
   padding-left: 0;
+  display: inline-flex;
 
   li {
     list-style: none;
-    display: inline;
     font-size: 16px;
     margin-left: 16px;
     cursor: pointer;
@@ -17,6 +23,13 @@
       &:hover {
         color: darken(#0f56b3, 10%);
       }
+    }
+
+    #game {
+      color: #008515;
+    }
+    #rain {
+      color: #b39f1d;
     }
 
     &:first-of-type {

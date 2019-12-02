@@ -17,7 +17,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   public checkLoggedIn() {
-    if (this.loginService.loggedIn) return true;
+    if (this.loginService.checkLoggedIn) return true;
   }
   public auth(l: string, p: string) {
     this.loginService.authorization({login: l, password: p});

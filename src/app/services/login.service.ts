@@ -6,32 +6,23 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class LoginService {
-  public admin: ICreds = {
-    login: 'a',
-    password: '123'
-  };
-  public user: ICreds;
+  public admin: ICreds = { login: 'a', password: '123' };
+  public currentUser: ICreds;
   public isLoggedin: boolean;
 
   constructor(private router: Router) {
-    this.user = {
-      login: '',
-      password: ''
-    };
+    this.currentUser = { login: '', password: '' };
     this.isLoggedin = false;
   }
 
-  get loggedIn() {
+  get checkLoggedIn() {
     if (this.isLoggedin) {
       return true;
     }
   }
 
   public logOut() {
-    this.user = {
-      login: '',
-      password: ''
-    };
+    this.currentUser = { login: '', password: '' };
     this.isLoggedin = false;
     this.router.navigate(['login']);
   }
@@ -43,12 +34,12 @@ export class LoginService {
     }
   }
   public logInAttempt(creds: ICreds) {
-    this.user.login = creds.login;
-    this.user.password = creds.password;
+    this.currentUser.login = creds.login;
+    this.currentUser.password = creds.password;
   }
   private checkCredentials(): boolean {
-    if ( this.user.login === this.admin.login &&
-         this.user.password === this.admin.password ) {
+    if ( this.currentUser.login === this.admin.login &&
+         this.currentUser.password === this.admin.password ) {
       console.log('yes');
       return true;
     } else {
