@@ -14,6 +14,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { CreatePageComponent } from './routes/create-page/create-page.component';
 import { GamePageComponent } from './routes/game-page/game-page.component';
 import { RainPageComponent } from './routes/rain-page/rain-page.component';
+import { LoginPageComponent } from './routes/login-page/login-page.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { RainPageComponent } from './routes/rain-page/rain-page.component';
     CreatePageComponent,
     GamePageComponent,
     RainPageComponent,
+    LoginPageComponent,
   ],
   imports: [
     BrowserModule,

@@ -19,7 +19,7 @@
       <button (click)="saveDetails()" class="ok-button">OK</button>
     </div>
     <span class="task-details--text" (click)="editDetails()" *ngIf="this.editDetailsEnabled === false" >
-    <span *ngIf="task.details.length === 0"> Click here to add the details</span>
+    <span *ngIf="task.details.length === 0" class="details--placeholder"> Click here to add the details</span>
       {{task.details}}
     </span>
   </div>

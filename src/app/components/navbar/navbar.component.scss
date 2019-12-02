@@ -6,6 +6,18 @@
     display: inline;
     font-size: 16px;
     margin-left: 16px;
+    cursor: pointer;
+
+    a {
+      color: #0f56b3;
+      font-size: 18px;
+      text-decoration: none;
+      transition: all .2s ease-in-out;
+
+      &:hover {
+        color: darken(#0f56b3, 10%);
+      }
+    }
 
     &:first-of-type {
       margin-left: 0;
