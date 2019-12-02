@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
     this.loginService.logOut();
   }
   public checkLoggedIn() {
-    if (this.loginService.loggedIn) return true;
+    if (this.loginService.checkLoggedIn) return true;
   }
 
 }
