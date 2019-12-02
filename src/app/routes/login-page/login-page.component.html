@@ -1,0 +1,7 @@
+<div id="login-form" *ngIf="!checkLoggedIn()">
+  <h2>Log in</h2>
+  <input type="text" [(ngModel)]="login" placeholder="Login">
+  <input type="text" [(ngModel)]="password" placeholder="Password">
+  <button (click)="auth(login, password)">Login</button>
+</div>
+<h1 *ngIf="checkLoggedIn()">Welcome, {{this.login}}</h1>

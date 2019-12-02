@@ -7,14 +7,17 @@ import { DetailsPageComponent } from './routes/details-page/details-page.compone
 import { CreatePageComponent } from './routes/create-page/create-page.component';
 import { GamePageComponent } from './routes/game-page/game-page.component';
 import { RainPageComponent } from './routes/rain-page/rain-page.component';
+import { LoginPageComponent } from './routes/login-page/login-page.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
-  { path: 'list/:id', component: DetailsPageComponent },
-  { path: 'add', component: CreatePageComponent },
+  { path: 'list', component: ListPageComponent, canActivate: [AuthGuard] },
+  { path: 'list/:id', component: DetailsPageComponent, canActivate: [AuthGuard] },
+  { path: 'add', component: CreatePageComponent, canActivate: [AuthGuard] },
   { path: 'game', component: GamePageComponent },
   { path: 'rain', component: RainPageComponent },
-  { path: 'list', component: ListPageComponent },
   { path: 'welcome', component: WelcomePageComponent },
+  { path: 'login', component: LoginPageComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
   { path: '**', component: ErrorPageComponent }
 ];

@@ -5,5 +5,7 @@
     <li><a [routerLink]="['add']">Add task</a></li>
     <li><a [routerLink]="['game']">Green guy torment</a></li>
     <li><a [routerLink]="['rain']">Golden rain</a></li>
+    <li *ngIf="!checkLoggedIn()"><a [routerLink]="['login']">Login</a></li>
+    <li *ngIf="checkLoggedIn()" (click)="logOut()"><a>Logout</a></li>
   </ul>
 </div>

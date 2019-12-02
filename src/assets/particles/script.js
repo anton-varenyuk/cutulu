@@ -12,7 +12,7 @@ var cw = c.width = window.innerWidth;
 var mouse = {
   x: innerWidth / 2,
   y: innerHeight / 2
-}
+};
 
 
 ctx.fillStyle = "black";
@@ -86,10 +86,10 @@ Particle.prototype.draw = function() {
   this.y += this.vy;
   this.vy += this.gravity;
 
-  if (this.y > (ch-10)) {
+  if (this.y > (ch-5)) {
       this.vx = Math.random() * -1 + 0.5;
       this.vy *= -0.2;
-      this.y = ch-10;
+      this.y = ch-5;
       this.gravity *= 0.5;
   }
   if (this.x > cw-10 || this.x <= 0) {
