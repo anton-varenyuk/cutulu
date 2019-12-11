@@ -8,32 +8,31 @@ import { Router } from '@angular/router';
 export class LoginService {
   public admin: ICreds = { login: 'a', password: '123' };
   public currentUser: ICreds;
-  public isLoggedin: boolean;
+  public isLoggedIn: boolean;
 
   constructor(private router: Router) {
     this.currentUser = { login: '', password: '' };
-    this.isLoggedin = false;
+    this.isLoggedIn = false;
   }
 
-  get checkLoggedIn() {
-    if (this.isLoggedin) {
+  get LoggedIn() {
+    if (this.isLoggedIn) {
       return true;
     }
   }
 
   public logOut() {
     this.currentUser = { login: '', password: '' };
-    this.isLoggedin = false;
+    this.isLoggedIn = false;
     this.router.navigate(['login']);
   }
-
-  public authorization(creds: ICreds) {
-    this.logInAttempt(creds);
+  public authorization(credentials: ICreds) {
+    this.setCredentials(credentials);
     if (this.checkCredentials()) {
-      this.isLoggedin = true;
+      this.isLoggedIn = true;
     }
   }
-  public logInAttempt(creds: ICreds) {
+  public setCredentials(creds: ICreds) {
     this.currentUser.login = creds.login;
     this.currentUser.password = creds.password;
   }
