@@ -42,8 +42,8 @@ export class DetailsPageComponent implements OnInit {
   private removeTask(): void {
     this.taskService.taskList.find((e, index) => {
       if (e.id === this.id) {
+        this.router.navigate(['list']);
         this.taskService.removeTask(index);
-        this.router.navigate(['/list']);
       }
     });
   }
