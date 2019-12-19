@@ -64,22 +64,18 @@
   }
   .delete-marker {
     position: absolute;
+    opacity: .2;
     top: 5px;
     right: 5px;
     padding: 5px;
-    height: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-    font-style: normal;
-    width: 10px;
-    font-weight: bold;
-    color: #d2d2d2;
+    height: 5px;
+    width: 5px;
     cursor: pointer;
-    font-family: cursive;
+    background: url('/assets/images/x.svg') center no-repeat;
+    transition: opacity 150ms ease-in-out;
+
     &:hover {
-      color: darken(#d2d2d2, 10%);
+      opacity: .4;
     }
   }
 }
