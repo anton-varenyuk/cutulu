@@ -1,7 +1,7 @@
 .navbar {
-  display: flex;
-  width: 100%;
+  display: inline-flex;
   justify-content: space-between;
+  padding: 0 20px;
 }
 
 .navbar ul {
@@ -15,25 +15,22 @@
     cursor: pointer;
 
     a {
-      color: #0f56b3;
+      color: #ffffff;
       font-size: 18px;
       text-decoration: none;
       transition: all .2s ease-in-out;
 
       &:hover {
-        color: darken(#0f56b3, 10%);
+        color: #ffee7b;
       }
-    }
-
-    #game {
-      color: #008515;
-    }
-    #rain {
-      color: #b39f1d;
     }
 
     &:first-of-type {
       margin-left: 0;
     }
   }
+}
+
+.logIn {
+  margin-left: 50px;
 }

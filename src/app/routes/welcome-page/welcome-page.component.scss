@@ -1,0 +1,29 @@
+h1,
+span {
+  display: block;
+  text-align: center;
+}
+
+.page-wrapper {
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.button-container {
+  text-align: center;
+  margin: 20px;
+}
+
+.login-button {
+  padding: 10px 15px;
+  background: linear-gradient(-45deg, #770ccb, #e211d9);
+  border-radius: 5px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all .5s ease-in-out;
+  &:hover {
+    background: linear-gradient(-45deg, #5b0cac, #b411ab);
+  }
+}

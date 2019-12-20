@@ -1,0 +1,13 @@
+#headerBar {
+  background-color: #815bb3;
+  padding: 10px 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,.25);
+
+  img {
+    margin-left: 10px;
+  }
+  .header {
+    display: flex;
+    align-items: center;
+  }
+}

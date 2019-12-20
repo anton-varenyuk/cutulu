@@ -1,5 +1,5 @@
 
-<form [formGroup]="loginForm" (ngSubmit)="logIn()" *ngIf="!this.loginService.checkToken()">
+<form [formGroup]="loginForm" (ngSubmit)="logIn()" *ngIf="!checkToken()">
   <label>
     Login:
     <input type="text" formControlName="login">
@@ -11,4 +11,3 @@
 
   <button type="submit" [disabled]="!loginForm.valid">Submit</button>
 </form>
-
