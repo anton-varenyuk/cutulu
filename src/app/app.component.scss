@@ -11,3 +11,19 @@
     align-items: center;
   }
 }
+
+.footer {
+  background: #455156;
+  color: #fff;
+  min-height: 20px;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+
+  .footer-text {
+    display: block;
+    font-size: 12px;
+    padding: 0 20px;
+    text-align: right;
+  }
+}

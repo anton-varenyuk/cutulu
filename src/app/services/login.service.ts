@@ -21,6 +21,6 @@ export class LoginService {
 
   logOut() {
     this.storage.set('token', '');
-    this.router.navigate(['login']);
+    this.router.navigate(['welcome']);
   }
 }
