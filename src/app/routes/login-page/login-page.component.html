@@ -1,13 +1,19 @@
 
-<form [formGroup]="loginForm" (ngSubmit)="logIn()" *ngIf="!checkToken()">
-  <label>
-    Login:
-    <input type="text" formControlName="login">
-  </label>
-  <label>
-    Password:
-    <input type="password" formControlName="password">
-  </label>
+<div class="login-form">
 
-  <button type="submit" [disabled]="!loginForm.valid">Submit</button>
-</form>
+  <h2> Enter your creds </h2>
+
+  <form [formGroup]="loginForm" (ngSubmit)="logIn()" *ngIf="!checkToken()">
+    <label>
+      Login:
+      <input type="text" formControlName="login">
+    </label>
+    <label>
+      Password:
+      <input type="password" formControlName="password">
+    </label>
+
+    <button class="cool-button" type="submit" [disabled]="!loginForm.valid">Submit</button>
+  </form>
+</div>
+

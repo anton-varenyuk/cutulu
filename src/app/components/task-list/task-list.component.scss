@@ -12,6 +12,7 @@
     max-width: 100%;
     position: relative;
     flex-direction: column;
+    border: 1px solid #e2e2e2;
 
     &--description {
       display: flex;
@@ -77,6 +78,23 @@
     &:hover {
       opacity: .4;
     }
+  }
+}
+
+.cool-button {
+  padding: 10px 15px;
+  background: linear-gradient(-45deg, #770ccb, #e211d9);
+  border-radius: 5px;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all .5s ease-in-out;
+  &:hover:not(:disabled) {
+    background: linear-gradient(-45deg, #5b0cac, #b411ab);
+  }
+  &:disabled {
+    filter: grayscale(1) opacity(0.5);
   }
 }
 

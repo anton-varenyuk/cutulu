@@ -16,6 +16,9 @@ export class LoginService {
   }
 
   checkToken(): boolean {
+    if (!this.storage.get('token')) {
+      return false;
+    }
     return this.storage.get('token').length > 0;
   }
 
