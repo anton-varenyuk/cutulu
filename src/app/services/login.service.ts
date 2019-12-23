@@ -16,11 +16,14 @@ export class LoginService {
   }
 
   checkToken(): boolean {
+    if (!this.storage.get('token')) {
+      return false;
+    }
     return this.storage.get('token').length > 0;
   }
 
   logOut() {
     this.storage.set('token', '');
-    this.router.navigate(['login']);
+    this.router.navigate(['welcome']);
   }
 }

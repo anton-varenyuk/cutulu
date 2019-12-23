@@ -11,9 +11,13 @@ export class NavbarComponent implements OnInit {
   constructor(private loginService: LoginService) { }
 
   ngOnInit() {
-    console.log(this.loginService.checkToken());
+    console.log(this.checkToken());
   }
-  public logOut(): void {
+
+  private checkToken(): boolean {
+    return this.loginService.checkToken();
+  }
+  private logOut(): void {
     this.loginService.logOut();
   }
 }

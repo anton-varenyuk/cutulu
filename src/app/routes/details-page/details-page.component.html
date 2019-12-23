@@ -7,7 +7,7 @@
     <span class="task-label">Task name</span>
     <div class="editor" *ngIf="editNameEnabled === true">
       <textarea class="task-details--text" [(ngModel)]="task.name" autofocus>{{task.name}}</textarea>
-      <button (click)="saveName()" class="ok-button">OK</button>
+      <button (click)="saveName()" class="cool-button">OK</button>
     </div>
     <span class="task-details--text task-details--name" (click)="editName()" *ngIf="editNameEnabled === false">{{task.name}}</span>
   </div>
@@ -16,7 +16,7 @@
     <span class="task-label">Task details</span>
     <div class="editor" *ngIf="this.editDetailsEnabled === true">
       <textarea class="task-details--text" [(ngModel)]="task.details" autofocus>{{task.details}}</textarea>
-      <button (click)="saveDetails()" class="ok-button">OK</button>
+      <button (click)="saveDetails()" class="cool-button">OK</button>
     </div>
     <span class="task-details--text" (click)="editDetails()" *ngIf="this.editDetailsEnabled === false" >
     <span *ngIf="task.details.length === 0" class="details--placeholder"> Click here to add the details</span>
@@ -24,9 +24,7 @@
     </span>
   </div>
 
-  <div class="task-details--controls">
-    <button (click)="removeTask()">Delete task</button>
-  </div>
+  <button class="delete-marker" (click)="removeTask()"></button>
 
 </div>
 

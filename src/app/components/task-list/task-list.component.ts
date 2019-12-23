@@ -20,7 +20,4 @@ export class TaskListComponent implements OnInit {
   public remove(index: number): void {
     this.taskListService.removeTask(index);
   }
-  // public navigate(item: ITask) {
-  //   this.router.navigate([{ outlets: { details: ['list', item.id]} }]);
-  // }
 }

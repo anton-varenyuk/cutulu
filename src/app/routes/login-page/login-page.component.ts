@@ -23,7 +23,10 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit() { }
 
-  logIn() {
+  private checkToken(): boolean {
+    return this.loginService.checkToken();
+  }
+  private logIn() {
     this.loginService.makeTokenFrom(this.loginForm.value.login);
     this.router.navigate(['list']);
   }

@@ -1,0 +1,40 @@
+#headerBar {
+  background: linear-gradient(-68deg, #550098, #00b164, #b931b5);
+  padding: 10px 0;
+  box-shadow: 0 2px 4px rgb(77,9,149);
+  animation: color-spin 10s linear infinite;
+
+  img {
+    margin-left: 10px;
+  }
+  .header {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.footer {
+  background: #455156;
+  color: #fff;
+  min-height: 20px;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+
+  .footer-text {
+    display: block;
+    font-size: 12px;
+    padding: 0 20px;
+    text-align: right;
+  }
+}
+
+@keyframes color-spin {
+  0% {
+    filter: hue-rotate(0deg);
+  } 50% {
+      filter: hue-rotate(180deg);
+    } 100% {
+        filter: hue-rotate(360deg);
+      }
+}
