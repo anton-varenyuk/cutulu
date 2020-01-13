@@ -1,43 +1,52 @@
 import { Injectable } from '@angular/core';
 import { ITask } from '../interfaces/ITask';
 import { StorageService } from './storage.service';
+import { AuthService } from './auth.service';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class TaskService {
 
-  public taskList: Array<ITask>;
+  private uid: string;
+  public task: ITask;
 
-  constructor(private storageService: StorageService) {
-    if (this.storageService.get('taskList')) {
-      this.taskList = JSON.parse(this.storageService.get('taskList'));
-      this.saveListState();
-    } else {
-      this.taskList = [{
-        name: 'Example task. Feel free to delete',
-        id: 0,
-        details: 'Nothing special, just ignore this task. You can do it later or never.'
-      }];
-      this.saveListState();
-    }
+  constructor( private storage: StorageService,
+               private auth: AuthService,
+               public db: AngularFirestore ) {
+
+    this.uid = this.auth.getUid();
   }
 
-  public getTaskList() {
-    return this.taskList;
+  public getTasks(): Observable<any> {
+     return this.db.collection('users').doc(this.uid).collection('tasks').snapshotChanges().pipe(
+       map(tasks => tasks.map(a => {
+         const data = a.payload.doc.data() as ITask;
+         data.id = a.payload.doc.id;
+         return {...data};
+       }))
+     );
   }
-  public getTask(id: number): ITask {
-    return(this.taskList.find(e => e.id === id));
+
+  public getTask(taskId?): AngularFirestoreDocument {
+    return this.db.collection('users').doc(this.uid).collection('tasks').doc(taskId);
   }
-  public addTask(n: string, d: string): void {
-    this.taskList.push({name: n, id: Date.now(), details: d});
-    this.saveListState();
+
+  public addTask(name: string, details: string): void {
+    this.db.collection('users').doc(this.uid).collection('tasks').add({name: name, details: details}).then(data => {
+      console.log('Added task: ', data);
+    });
   }
-  public removeTask(index: number): void {
-    this.taskList.splice(index, 1);
-    this.saveListState();
+
+  public deleteTask(id: string): void {
+    this.db.collection('users').doc(this.uid).collection('tasks').doc(id).delete();
   }
-  public saveListState(): void {
-    this.storageService.set('taskList', JSON.stringify(this.taskList));
+
+  public overrideTask(id, data: ITask): void {
+    this.db.collection('users').doc(this.uid).collection('tasks').doc(id).set(data, { merge: true });
   }
 }

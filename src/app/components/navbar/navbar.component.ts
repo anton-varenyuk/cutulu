@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../../services/login.service';
+import { AuthService } from '../../services/auth.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-navbar',
@@ -8,16 +9,17 @@ import { LoginService } from '../../services/login.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private loginService: LoginService) { }
+  constructor(private auth: AuthService,
+              private afAuth: AngularFireAuth ) { }
 
   ngOnInit() {
-    console.log(this.checkToken());
+    console.log('token is: ', this.checkToken());
   }
 
   private checkToken(): boolean {
-    return this.loginService.checkToken();
+    return this.auth.checkToken();
   }
   private logOut(): void {
-    this.loginService.logOut();
+    this.auth.logOut();
   }
 }

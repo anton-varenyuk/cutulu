@@ -32,21 +32,4 @@
     width: 200px;
     margin: 20px 0 0 0;
   }
-
-  .cool-button {
-    padding: 10px 15px;
-    background: linear-gradient(-45deg, #770ccb, #e211d9);
-    border-radius: 5px;
-    color: #fff;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all .5s ease-in-out;
-    &:hover:not(:disabled) {
-      background: linear-gradient(-45deg, #5b0cac, #b411ab);
-    }
-    &:disabled {
-      filter: grayscale(1) opacity(0.5);
-    }
-  }
 }

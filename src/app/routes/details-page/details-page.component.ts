@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {TaskService} from '../../services/task.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { TaskService } from '../../services/task.service';
 import { ITask } from '../../interfaces/ITask';
 import { Router } from '@angular/router';
 
@@ -11,40 +11,42 @@ import { Router } from '@angular/router';
 })
 export class DetailsPageComponent implements OnInit {
   private task: ITask;
-  private id: number;
-  private editDetailsEnabled: boolean = false;
-  private editNameEnabled: boolean = false;
+  private id: string;
+  private detailsEditable: boolean = false;
+  private nameEditable: boolean = false;
 
   constructor(private taskService: TaskService,
               private route: ActivatedRoute,
               private router: Router) {
+    this.id = this.route.snapshot.paramMap.get('id');
   }
 
   ngOnInit(): void {
-    this.id = +this.route.snapshot.paramMap.get('id');
-    this.task = this.taskService.getTask(this.id);
-    console.log(this.task);
+    this.getTask(this.id);
+  }
+
+  private getTask(id: string): void {
+    this.taskService.getTask(id).valueChanges().subscribe((data: ITask) => {
+      this.task = data;
+    });
   }
   private editDetails(): void {
-    this.editDetailsEnabled = true;
+    console.log(this.task);
+    this.detailsEditable = true;
   }
   private saveDetails(): void {
-    this.editDetailsEnabled = false;
-    this.taskService.saveListState();
+    this.detailsEditable = false;
+    this.taskService.overrideTask(this.id, this.task);
   }
   private editName(): void {
-    this.editNameEnabled = true;
+    this.nameEditable = true;
   }
   private saveName(): void {
-    this.editNameEnabled = false;
-    this.taskService.saveListState();
+    this.nameEditable = false;
+    this.taskService.overrideTask(this.id, this.task);
   }
-  private removeTask(): void {
-    this.taskService.taskList.find((e, index) => {
-      if (e.id === this.id) {
-        this.router.navigate(['list']);
-        this.taskService.removeTask(index);
-      }
-    });
+  public removeTask(id: string): void {
+    this.taskService.deleteTask(id);
+    this.router.navigate(['list']);
   }
 }

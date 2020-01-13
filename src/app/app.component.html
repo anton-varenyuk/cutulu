@@ -1,12 +1,11 @@
 <div id="headerBar">
-  <div class="centrifier">
-    <div class="header">
-      <a routerLink="welcome">
-        <img src="/assets/images/logo.png" width="150" />
-      </a>
-      <app-navbar></app-navbar>
-    </div>
-  </div>
+  <a routerLink="welcome">
+    <img src="/assets/images/logo.png" width="100" id="Logo" />
+  </a>
+</div>
+
+<div id="navBar">
+    <app-navbar></app-navbar>
 </div>
 
 <div class="centrifier">
@@ -16,3 +15,13 @@
 <div class="footer">
     <span class="footer-text">powered by CancerCell Corporation</span>
 </div>
+
+
+<!--<div *ngIf="afAuth.user | async as user; else showLogin">-->
+<!--  <h1>Hello {{ user.displayName }}!</h1>-->
+<!--  <button (click)="logout()">Logout</button>-->
+<!--</div>-->
+<!--<ng-template #showLogin>-->
+<!--  <p>Please login.</p>-->
+<!--  <button (click)="login()">Login with Google</button>-->
+<!--</ng-template>-->

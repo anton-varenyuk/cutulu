@@ -1,14 +1,16 @@
-<div class="navbar">
-  <ul>
-    <li><a [routerLink]="['/welcome']">Home</a></li>
-    <li *ngIf="checkToken()"><a [routerLink]="['/list']">Task List</a></li>
-    <li *ngIf="checkToken()"><a [routerLink]="['add']">Add task</a></li>
-    <li><a [routerLink]="['game']" id="game">Green guy torment</a></li>
-    <li><a [routerLink]="['rain']" id="rain">Golden rain</a></li>
+<div class="centrifier">
+  <div class="navBar">
+    <ul>
+      <li><a [routerLink]="['/welcome']">Home</a></li>
+      <li *ngIf="checkToken()"><a [routerLink]="['/list']">Task List</a></li>
+      <li *ngIf="checkToken()"><a [routerLink]="['add']">Add task</a></li>
+      <li><a [routerLink]="['game']" id="game">Green guy torment</a></li>
+      <li><a [routerLink]="['rain']" id="rain">Golden rain</a></li>
+    </ul>
+  </div>
 
-  </ul>
   <ul class="logIn">
-    <li *ngIf="!checkToken()"><a [routerLink]="['login']">Login</a></li>
-    <li *ngIf="checkToken()" (click)="logOut()"><a>Logout</a></li>
+    <li *ngIf="afAuth.user | async as user; else login" (click)="logOut()"><a>Logout</a></li>
+    <ng-template #login><li><a [routerLink]="['login']">Login</a></li></ng-template>
   </ul>
 </div>
