@@ -6,31 +6,33 @@ import { AuthService } from '../../services/auth.service';
 import { AngularFireAuth} from '@angular/fire/auth';
 
 @Component({
-  selector: 'app-login-page',
-  templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  selector: 'app-sign-in-page',
+  templateUrl: './sign-in-page.component.html',
+  styleUrls: ['./sign-in-page.component.scss']
 })
-
-export class LoginPageComponent implements OnInit {
+export class SignInPageComponent implements OnInit {
 
   public loginForm = new FormGroup({
     email: new FormControl( '', Validators.required ),
     password: new FormControl( '', Validators.required)
   });
 
+  public errorMessage: string;
+
   constructor(private storageService: StorageService,
               private router: Router,
               private auth: AuthService,
               private afAuth: AngularFireAuth) { }
 
-  ngOnInit() { }
-
-  public signUp(): void {
-    this.auth.signUp(this.creds('email'), this.creds('password'));
+  ngOnInit() {
   }
 
   public signIn(): void {
-    this.auth.signIn(this.creds('email'), this.creds('password'));
+    this.auth.signIn(this.creds('email'), this.creds('password')).catch(err => {
+
+      this.errorMessage = err.message;
+      console.log(this.errorMessage);
+    });
   }
 
   private creds(value): string {
@@ -41,4 +43,3 @@ export class LoginPageComponent implements OnInit {
     return this.auth.checkToken();
   }
 }
-

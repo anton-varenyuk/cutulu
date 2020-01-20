@@ -1,0 +1,29 @@
+
+<div class="login-form" *ngIf="afAuth.user | async as user; else loginFrm">
+  <div class="welcome-container">
+    <h1 class="welcome-header">Welcome!</h1>
+    <button class="cool-button" routerLink="/list"> Task List </button>
+  </div>
+</div>
+
+<ng-template #loginFrm>
+  <div class="login-form">
+    <h2> Enter your creds to log in </h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="signIn()">
+      <span *ngIf="errorMessage" class="error-message">{{errorMessage}}</span>
+      <label>
+        Login:
+        <input type="email" formControlName="email">
+      </label>
+      <label>
+        Password:
+        <input type="password" formControlName="password">
+      </label>
+
+      <button class="cool-button" type="submit" [disabled]="!loginForm.valid">Sign In</button>
+    </form>
+
+  </div>
+</ng-template>
+

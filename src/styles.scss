@@ -62,6 +62,17 @@ body {
   }
 }
 
+.error-message {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: #fb5035;
+  border: 1px solid #fb5035;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+}
+
 @mixin glass {
   background-color: rgba(255, 255, 255, 0);
   backdrop-filter: blur(3px);

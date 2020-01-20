@@ -13,12 +13,13 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { CreatePageComponent } from './routes/create-page/create-page.component';
 import { GamePageComponent } from './routes/game-page/game-page.component';
 import { RainPageComponent } from './routes/rain-page/rain-page.component';
-import { LoginPageComponent } from './routes/login-page/login-page.component';
+import { SignUpPageComponent } from './routes/sign-up-page/sign-up-page.component';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { SignInPageComponent } from './routes/sign-in-page/sign-in-page.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     CreatePageComponent,
     GamePageComponent,
     RainPageComponent,
-    LoginPageComponent
+    SignUpPageComponent,
+    SignInPageComponent
   ],
   imports: [
     BrowserModule,
