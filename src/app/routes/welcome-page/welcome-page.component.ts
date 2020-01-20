@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from "../../services/login.service";
-
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-welcome-page',
@@ -9,12 +8,11 @@ import { LoginService } from "../../services/login.service";
 })
 export class WelcomePageComponent implements OnInit {
 
-  constructor(private loginService: LoginService) { }
+  constructor(private auth: AuthService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
-  checkToken(): boolean {
-    return this.loginService.checkToken();
+  private checkToken(): boolean {
+    return this.auth.checkToken();
   }
 }
