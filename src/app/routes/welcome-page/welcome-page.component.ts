@@ -10,7 +10,9 @@ export class WelcomePageComponent implements OnInit {
 
   constructor(private auth: AuthService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+
+  }
 
   private checkToken(): boolean {
     return this.auth.checkToken();
