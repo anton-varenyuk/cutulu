@@ -12,13 +12,13 @@ import { AngularFireAuth} from '@angular/fire/auth';
 })
 
 export class SignUpPageComponent implements OnInit {
+  private emailPattern = '[a-zA-Z0-9_~-]+(?:\\.[a-zA-Z0-9_~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])+';
+  public errorMessage: string;
 
   public loginForm = new FormGroup({
-    email: new FormControl( '', Validators.required ),
-    password: new FormControl( '', Validators.required)
+    email: new FormControl( '', [Validators.required, Validators.pattern(this.emailPattern)] ),
+    password: new FormControl( '', [Validators.required, Validators.minLength(6)])
   });
-
-  public errorMessage: string;
 
   constructor(private storageService: StorageService,
               private router: Router,
