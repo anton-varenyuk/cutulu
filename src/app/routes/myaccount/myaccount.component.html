@@ -1,0 +1,30 @@
+<div class="centrifier">
+  <div class="page-wrapper">
+    <h1 class="bright-text">MY ACCOUNT</h1>
+    <div class="info-container">
+      <div class="info-block">
+        <span class="title">Email: </span><span>{{userData?.email}}</span>
+      </div>
+      <div class="info-block">
+        <span class="title">Display name: </span>
+        <span *ngIf="userInfoEditable === false">{{userProfile.displayName}}</span>
+        <input *ngIf="userInfoEditable === true" [(ngModel)]="userProfile.displayName" type="text"
+               class="username-input" autofocus>
+      </div>
+      <div class="info-block">
+        <span class="title">Phone number: </span><span *ngIf="userData?.phoneNumber">{{userData?.phoneNumber}}</span>
+      </div>
+      <div class="info-block">
+        <span class="title">Registered: </span><span>{{userData?.metadata.creationTime}}</span>
+      </div>
+<!--      <div class="info-block">-->
+<!--        <span class="title">New password: </span><input [(ngModel)]="userPassword">-->
+<!--        <button (click)="updatePassword(userPassword)" class="cool-button">OK </button>-->
+<!--      </div>-->
+
+    </div>
+
+    <button *ngIf="userInfoEditable === false" (click)="editProfile()" class="cool-button">Update Display Name</button>
+    <button *ngIf="userInfoEditable === true" (click)="updateProfile()" class="cool-button">OK</button>
+  </div>
+</div>

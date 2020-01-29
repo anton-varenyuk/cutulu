@@ -10,7 +10,10 @@
   </div>
 
   <ul class="logIn">
-    <li *ngIf="afAuth.user | async as user; else login" (click)="logOut()"><a>Logout</a></li>
+    <li *ngIf="checkToken(); else login">
+      <a [routerLink]="['myaccount']">My account</a>
+      <a (click)="logOut()">Logout</a>
+    </li>
     <ng-template #login>
       <li><a [routerLink]="['register']" (click)="cutulu()">Register</a></li>
       <li><a [routerLink]="['signin']" (click)="cutulu()">Sign in</a></li>

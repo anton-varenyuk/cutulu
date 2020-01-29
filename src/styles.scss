@@ -48,6 +48,23 @@ body {
   }
 }
 
+.bright-text {
+  display: inline;
+  font-weight: bold;
+  background: -webkit-linear-gradient(-45deg, #5b0cac, #b411ab);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: color-spin 10s linear infinite;
+}
+
+.page-wrapper {
+  margin: 50px auto;
+  padding: 20px;
+  width: 100%;
+  background: #f5f5f5;
+  border: 1px solid #e2e2e2;
+}
+
 .simple-button {
   border: 1px solid #3c63be;
   color: #3c63be;

@@ -21,6 +21,7 @@ export class NavbarComponent implements OnInit {
   private checkToken(): boolean {
     return this.auth.checkToken();
   }
+
   private logOut(): void {
     this.auth.logOut();
   }

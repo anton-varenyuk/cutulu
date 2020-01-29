@@ -14,7 +14,7 @@ export class WelcomePageComponent implements OnInit {
 
   }
 
-  private checkToken(): boolean {
+  private checkToken() {
     return this.auth.checkToken();
   }
 }

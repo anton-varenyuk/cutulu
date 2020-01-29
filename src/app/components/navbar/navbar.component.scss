@@ -11,12 +11,12 @@
 
   li {
     list-style: none;
-    margin-left: 16px;
     cursor: pointer;
 
     a {
       color: #ffffff;
       font-size: 14px;
+      margin-left: 16px;
       position: relative;
       text-decoration: none;
       transition: all .2s ease-in-out;
@@ -30,6 +30,7 @@
         border-radius: 7px 7px 0 0;
         background-color: #fff;
         bottom: -21px;
+        left: 0;
       }
     }
 
