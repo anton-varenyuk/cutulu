@@ -39,8 +39,4 @@ export class SignInPageComponent implements OnInit {
   private creds(value): string {
     return this.loginForm.get(value).value;
   }
-
-  public checkToken(): boolean {
-    return this.auth.checkToken();
-  }
 }

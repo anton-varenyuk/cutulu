@@ -20,6 +20,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { SignInPageComponent } from './routes/sign-in-page/sign-in-page.component';
+import { MyaccountComponent } from './routes/myaccount/myaccount.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { SignInPageComponent } from './routes/sign-in-page/sign-in-page.componen
     GamePageComponent,
     RainPageComponent,
     SignUpPageComponent,
-    SignInPageComponent
+    SignInPageComponent,
+    MyaccountComponent
   ],
   imports: [
     BrowserModule,

@@ -37,9 +37,7 @@ export class TaskService {
   }
 
   public addTask(name: string, details: string): void {
-    this.db.collection('users').doc(this.uid).collection('tasks').add({name: name, details: details}).then(data => {
-      console.log('Added task: ', data);
-    });
+    this.db.collection('users').doc(this.uid).collection('tasks').add({name: name, details: details});
   }
 
   public deleteTask(id: string): void {
