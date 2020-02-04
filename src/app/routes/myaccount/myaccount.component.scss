@@ -8,6 +8,49 @@
   margin-bottom: 20px;
 }
 
+.change-password {
+  margin-top: 20px;
+  border: 1px solid #e2e2e2;
+  width: 500px;
+  padding: 20px;
+
+  input {
+    width: 100%;
+    padding: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+
+    &.error {
+      border: 1px solid #fb5035;
+    }
+  }
+}
+
+.error-alert {
+  color: #fb5035;
+  display: inline-block;
+  font-size: 12px;
+  max-width: 100%;
+}
+
+.success-alert {
+  color: #0e8f20;
+  display: inline-block;
+  font-size: 12px;
+  max-width: 100%;
+}
+
+.input-field {
+  margin: 10px 0;
+}
+.interactive-text {
+  color: #3c63be;
+  cursor: pointer;
+  border-bottom: 1px dashed #3c63be;
+  font-size: 12px;
+  margin-left: 20px;
+}
+
 .username-input {
   font-size: 14px;
   border: none;

@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore , AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { StorageService } from './storage.service';
 import { Router } from '@angular/router';
-// import { auth } from 'firebase/app';
-//
-// import * as firebase from 'firebase';
-// import AuthCredential = firebase.auth.AuthCredential;
+import * as firebase from 'firebase';
+import {error} from "util";
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +15,8 @@ export class AuthService {
   public uid: string;
   public authorized: boolean;
   public userData: any;
-  // public creds: AuthCredential;
   private userPassword: string;
+  private user: object;
 
   constructor(public afAuth: AngularFireAuth,
               private db: AngularFirestore,
@@ -30,17 +28,12 @@ export class AuthService {
       this.authorized = !!data;
     });
 
+    console.log(this.user);
   }
 
   public signUp( email, password ): Promise<object> {
     const user = { email, password };
     this.userPassword = user.password;
-
-    // this.creds = firebase.auth.EmailAuthProvider.credential(
-    //   user.email,
-    //   user.password
-    // );
-    // console.log('creds creds:', this.creds);
 
     return new Promise((resolve, reject) => {
       this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(data => {
@@ -57,14 +50,7 @@ export class AuthService {
   }
 
   public signIn(email, password): Promise<object> {
-    const user = { email, password };
-    // this.userPassword = user.password;
-    //
-    // this.creds = firebase.auth.EmailAuthProvider.credential(
-    //   user.email,
-    //   user.password
-    // );
-    // console.log('creds creds:', this.creds);
+    // const user = { email, password };
 
     return new Promise((resolve, reject) => {
       this.afAuth.auth.signInWithEmailAndPassword(email, password).then(data => {
@@ -88,13 +74,39 @@ export class AuthService {
     this.router.navigate(['welcome']);
   }
 
-  // public reAuth(creds): void {
-  //   this.userData.reauthenticateWithCredential(creds).then(data => {
-  //     console.log(data);
+  // public updatePassword(oldPassword: string, newPassword: string): void {
+  //   this.authWithCreds(this.userData.email, oldPassword).then( (user) => {
+  //     firebase.auth().currentUser.updatePassword(newPassword);
   //   });
   // }
-  //
-  // public getCreds(): object {
-  //   return this.creds;
-  // }
+
+
+  public updatePassword(oldPassword: string, newPassword: string): Promise<void> {
+
+    return new Promise((resolve, reject) => {
+      this.authWithCreds(this.userData.email, oldPassword).then( (user) => {
+        firebase.auth().currentUser.updatePassword(newPassword);
+        console.log('update successful');
+        resolve();
+      }, error => {
+        console.log('update failed', error.message);
+        reject(error);
+      });
+    });
+
+    // this.authWithCreds(this.userData.email, oldPassword).then( (user) => {
+    //   firebase.auth().currentUser.updatePassword(newPassword).then( () => {
+    //     return new Promise((resolve, reject) => {
+    //       console.log('change successful');
+    //       resolve();
+    //     });
+    //   }).catch(error => {
+    //     console.log(error);
+    //   });
+    // });
+  }
+
+  private authWithCreds(email, password) {
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password);
+  }
 }

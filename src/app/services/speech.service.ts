@@ -6,17 +6,18 @@ import { Injectable } from '@angular/core';
 export class SpeechService {
   private synthesis: SpeechSynthesis;
   private voices = [];
-  private utterance = new SpeechSynthesisUtterance('CÜtÜlÜ');
+  private utterance: SpeechSynthesisUtterance;
 
   constructor() {
     this.synthesis = window.speechSynthesis;
     this.getVoices();
   }
 
-  public speak(): void {
+  public speak(what: string): void {
+    this.utterance = new SpeechSynthesisUtterance(what);
     this.utterance.voice = this.voices[15];
-    this.utterance.pitch = Math.random() * 2;
-    this.utterance.rate = Math.random() * 2;
+    this.utterance.pitch = 0;
+    this.utterance.rate = 2;
     this.synthesis.speak(this.utterance);
   }
 
