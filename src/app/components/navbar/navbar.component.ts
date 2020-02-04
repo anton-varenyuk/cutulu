@@ -27,7 +27,7 @@ export class NavbarComponent implements OnInit {
   }
 
   private cutulu() {
-    this.speech.speak();
+    this.speech.speak('CÜtÜlÜ aaappppppp!');
   }
 
 }

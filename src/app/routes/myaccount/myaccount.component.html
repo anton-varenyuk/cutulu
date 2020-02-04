@@ -7,24 +7,41 @@
       </div>
       <div class="info-block">
         <span class="title">Display name: </span>
-        <span *ngIf="userInfoEditable === false">{{userProfile.displayName}}</span>
-        <input *ngIf="userInfoEditable === true" [(ngModel)]="userProfile.displayName" type="text"
+        <span *ngIf="!userInfoEditable">{{userProfile.displayName}}</span>
+        <input *ngIf="userInfoEditable" [(ngModel)]="userProfile.displayName" type="text"
                class="username-input" autofocus>
+
+        <span class="interactive-text" *ngIf="!userInfoEditable" (click)="editProfile()">change display name </span>
+        <span class="interactive-text" *ngIf="userInfoEditable" (click)="updateProfile()">OK</span>
+
       </div>
+
       <div class="info-block">
         <span class="title">Phone number: </span><span *ngIf="userData?.phoneNumber">{{userData?.phoneNumber}}</span>
       </div>
       <div class="info-block">
         <span class="title">Registered: </span><span>{{userData?.metadata.creationTime}}</span>
       </div>
-<!--      <div class="info-block">-->
-<!--        <span class="title">New password: </span><input [(ngModel)]="userPassword">-->
-<!--        <button (click)="updatePassword(userPassword)" class="cool-button">OK </button>-->
-<!--      </div>-->
+
+      <div class="info-block change-password">
+        <h3>Change password</h3>
+        <h3 *ngIf="passwordUpdatedRecently" class="success-alert">Password updated successfully</h3>
+        <h3 *ngIf="errorMessage.length > 0" class="error-alert">{{errorMessage}}</h3>
+        <div class="input-field">
+          <label class="title" for="oldPass">Old Password: </label>
+          <input id="oldPass" type="password" [(ngModel)]="oldPassword" [ngClass]="{
+            'error': errorMessage.length > 0 }" (focus)="checkError()" >
+        </div>
+
+        <div class="input-field">
+          <label class="title" for="newPass">New Password: </label>
+          <input id="newPass" type="password" [(ngModel)]="newPassword" [ngClass]="{
+            'error':errorMessage.length > 0 }" (focus)="checkError()">
+        </div>
+
+        <button (click)="updatePassword(oldPassword, newPassword)" class="cool-button">OK </button>
+      </div>
 
     </div>
-
-    <button *ngIf="userInfoEditable === false" (click)="editProfile()" class="cool-button">Update Display Name</button>
-    <button *ngIf="userInfoEditable === true" (click)="updateProfile()" class="cool-button">OK</button>
   </div>
 </div>
