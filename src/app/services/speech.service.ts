@@ -17,7 +17,7 @@ export class SpeechService {
     this.utterance = new SpeechSynthesisUtterance(what);
     this.utterance.voice = this.voices[15];
     this.utterance.pitch = 0;
-    this.utterance.rate = 2;
+    this.utterance.rate = 1;
     this.synthesis.speak(this.utterance);
   }
 

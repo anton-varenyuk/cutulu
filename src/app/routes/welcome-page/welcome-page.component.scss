@@ -1,3 +1,5 @@
+@import "./src/styles";
+
 h1,
 span {
   display: block;
@@ -18,4 +20,9 @@ span {
   } 100% {
     filter: hue-rotate(360deg);
   }
+}
+
+.header {
+  font-size: 120px;
+  font-family: $font-header;
 }

@@ -1,19 +1,12 @@
-#headerBar {
-  background: linear-gradient(-68deg, #550098, #00b164, #b931b5);
-  padding: 0;
-  animation: color-spin 10s linear infinite;
-  box-shadow: 0 5px 20px 0px red;
-}
+@import "./src/styles";
 
-#navBar {
-  background-color: #317dbe;
-  padding: 20px 0 20px 0;
-  box-shadow: 0 2px 4px rgba(0,0,0,.2);
+#headerBar {
+  background: $gradient-main;
+  height: 20px;
 }
 
 .footer {
-  background: #455156;
-  color: #fff;
+  color: $color-type-primary;
   min-height: 20px;
   position: absolute;
   width: 100%;

@@ -4,7 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { StorageService } from './storage.service';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
-import {error} from "util";
+import { User } from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +12,11 @@ import {error} from "util";
 
 export class AuthService {
 
-  public uid: string;
-  public authorized: boolean;
+  // public uid: string;
+  public isAuthorized: boolean;
   public userData: any;
   private userPassword: string;
-  private user: object;
+  private user: User;
 
   constructor(public afAuth: AngularFireAuth,
               private db: AngularFirestore,
@@ -25,7 +25,7 @@ export class AuthService {
     this.afAuth.user.subscribe(data => {
       console.log('User: ', data);
       this.userData = data;
-      this.authorized = !!data;
+      this.isAuthorized = !!data;
     });
 
     console.log(this.user);
@@ -50,7 +50,6 @@ export class AuthService {
   }
 
   public signIn(email, password): Promise<object> {
-    // const user = { email, password };
 
     return new Promise((resolve, reject) => {
       this.afAuth.auth.signInWithEmailAndPassword(email, password).then(data => {
@@ -61,7 +60,7 @@ export class AuthService {
   }
 
   public checkToken(): boolean {
-    return this.authorized;
+    return this.isAuthorized;
   }
 
   public getUserInfo(): object {
@@ -74,39 +73,31 @@ export class AuthService {
     this.router.navigate(['welcome']);
   }
 
-  // public updatePassword(oldPassword: string, newPassword: string): void {
-  //   this.authWithCreds(this.userData.email, oldPassword).then( (user) => {
-  //     firebase.auth().currentUser.updatePassword(newPassword);
-  //   });
-  // }
-
-
   public updatePassword(oldPassword: string, newPassword: string): Promise<void> {
 
     return new Promise((resolve, reject) => {
       this.authWithCreds(this.userData.email, oldPassword).then( (user) => {
         firebase.auth().currentUser.updatePassword(newPassword);
-        console.log('update successful');
+        this.db.collection('users').doc(this.getUid()).set({password: newPassword});
         resolve();
       }, error => {
-        console.log('update failed', error.message);
         reject(error);
       });
     });
-
-    // this.authWithCreds(this.userData.email, oldPassword).then( (user) => {
-    //   firebase.auth().currentUser.updatePassword(newPassword).then( () => {
-    //     return new Promise((resolve, reject) => {
-    //       console.log('change successful');
-    //       resolve();
-    //     });
-    //   }).catch(error => {
-    //     console.log(error);
-    //   });
-    // });
   }
 
   private authWithCreds(email, password) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password);
+  }
+
+  public updateEmail(oldPassword: string , newEmail: string) {
+    return new Promise((resolve, reject) => {
+      this.authWithCreds(this.userData.email, oldPassword).then( (user) => {
+        firebase.auth().currentUser.updateEmail(newEmail);
+        resolve();
+      }, error => {
+        reject(error);
+      });
+    });
   }
 }
