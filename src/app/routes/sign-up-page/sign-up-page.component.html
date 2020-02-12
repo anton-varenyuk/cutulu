@@ -12,7 +12,7 @@
     <span *ngIf="errorMessage" class="error-message">{{errorMessage}}</span>
     <form [formGroup]="loginForm" (ngSubmit)="signUp()">
       <label>
-        Login:
+        Email:
         <input type="email" formControlName="email">
       </label>
       <label>

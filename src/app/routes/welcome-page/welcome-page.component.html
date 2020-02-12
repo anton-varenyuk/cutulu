@@ -1,21 +1,23 @@
 <div class="centrifier">
-  <div class="page-wrapper">
-    <h1>WELCOME TO <span class="bright-text">CÜTÜLU APP</span></h1>
+  <div class="page-wrapper c-c-v">
+    <div>
+      <h1><span class="bright-text header">CÜTÜLU</span></h1>
 
-    <div *ngIf="!checkToken()">
-      <span>Log in to use task list feature...</span>
-      <span>or enjoy your stay here!</span>
-      <div class="button-container">
-        <button class="cool-button" routerLink="/signin"> Sign in </button>
-        or
-        <button class="cool-button" routerLink="/register"> Register </button>
+      <div *ngIf="!checkToken()">
+        <span>Log in to use task list feature...</span>
+        <span>or enjoy your stay here!</span>
+        <div class="button-container">
+          <button class="cool-button" routerLink="/signin"> Sign in </button>
+          or
+          <button class="cool-button" routerLink="/register"> Register </button>
+        </div>
       </div>
-    </div>
 
-    <div *ngIf="checkToken()">
-      <span>You can now use the Task List feature</span>
-      <div class="button-container">
-        <button class="cool-button" routerLink="/list"> Task List </button>
+      <div *ngIf="checkToken()">
+        <span>You can now use the Task List feature</span>
+        <div class="button-container">
+          <button class="cool-button" routerLink="/list"> Task List </button>
+        </div>
       </div>
     </div>
   </div>

@@ -25,23 +25,25 @@
 
       <div class="info-block change-password">
         <h3>Change password</h3>
-        <h3 *ngIf="passwordUpdatedRecently" class="success-alert">Password updated successfully</h3>
+        <h3 *ngIf="passwordIsUpdatedRecently" class="success-alert">Password updated successfully</h3>
         <h3 *ngIf="errorMessage.length > 0" class="error-alert">{{errorMessage}}</h3>
         <div class="input-field">
           <label class="title" for="oldPass">Old Password: </label>
-          <input id="oldPass" type="password" [(ngModel)]="oldPassword" [ngClass]="{
-            'error': errorMessage.length > 0 }" (focus)="checkError()" >
+          <input id="oldPass" type="password" [(ngModel)]="oldPasswordFieldValue" [ngClass]="{
+            'error': errorMessage.length > 0 }" (focus)="checkForError()" >
         </div>
 
         <div class="input-field">
           <label class="title" for="newPass">New Password: </label>
-          <input id="newPass" type="password" [(ngModel)]="newPassword" [ngClass]="{
-            'error':errorMessage.length > 0 }" (focus)="checkError()">
+          <input id="newPass" type="password" [(ngModel)]="newPasswordFieldValue" [ngClass]="{
+            'error':errorMessage.length > 0 }" (focus)="checkForError()">
         </div>
 
-        <button (click)="updatePassword(oldPassword, newPassword)" class="cool-button">OK </button>
+        <button (click)="updatePassword(oldPasswordFieldValue, newPasswordFieldValue)" class="cool-button">OK </button>
       </div>
 
+      <input type="text" [(ngModel)]="newEmail">
+      <button (click)="updateEmail()">Update email</button>
     </div>
   </div>
 </div>
