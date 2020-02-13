@@ -2,18 +2,37 @@
   <div class="page-wrapper">
     <h1 class="bright-text">MY ACCOUNT</h1>
     <div class="info-container">
+
       <div class="info-block">
         <span class="title">Email: </span><span>{{userData?.email}}</span>
+        <span class="interactive-text" *ngIf="!settings.userEmailEditable"
+              (click)="editEnable('userEmailEditable')">change email</span>
+
+        <div *ngIf="settings.userEmailEditable" class="dropdown-block">
+
+          <h3 *ngIf="settings.emailUpdatedRecently" class="success-alert">Email updated successfully</h3>
+          <h3 *ngIf="errorMessageInEmailForm.length > 0" class="error-alert">{{errorMessageInEmailForm}}</h3>
+
+          <input type="password" [(ngModel)]="oldPasswordInEmailForm" [ngClass]="{
+            'error': errorMessageInEmailForm.length > 0 }" placeholder="enter password" class="field"
+                 (focus)="checkForErrors('emailChangeForm')">
+          <input type="email" [(ngModel)]="newEmailInEmailForm" placeholder="new email" class="field"
+                 (focus)="checkForErrors('emailChangeForm')">
+          <button (click)="updateEmail(oldPasswordInEmailForm, newEmailInEmailForm)"
+                  class="cool-button rounded txt-small">Submit</button>
+        </div>
+
+
       </div>
+
       <div class="info-block">
         <span class="title">Display name: </span>
-        <span *ngIf="!userInfoEditable">{{userProfile.displayName}}</span>
-        <input *ngIf="userInfoEditable" [(ngModel)]="userProfile.displayName" type="text"
+        <span *ngIf="!settings.userInfoEditable">{{userProfile.displayName}}</span>
+        <input *ngIf="settings.userInfoEditable" [(ngModel)]="userProfile.displayName" type="text"
                class="username-input" autofocus>
-
-        <span class="interactive-text" *ngIf="!userInfoEditable" (click)="editProfile()">change display name </span>
-        <span class="interactive-text" *ngIf="userInfoEditable" (click)="updateProfile()">OK</span>
-
+        <span class="interactive-text" *ngIf="!settings.userInfoEditable"
+              (click)="editEnable('userInfoEditable')">change display name </span>
+        <span class="interactive-text" *ngIf="settings.userInfoEditable" (click)="updateProfile()">OK</span>
       </div>
 
       <div class="info-block">
@@ -25,25 +44,25 @@
 
       <div class="info-block change-password">
         <h3>Change password</h3>
-        <h3 *ngIf="passwordIsUpdatedRecently" class="success-alert">Password updated successfully</h3>
-        <h3 *ngIf="errorMessage.length > 0" class="error-alert">{{errorMessage}}</h3>
+        <h3 *ngIf="settings.passwordIsUpdatedRecently" class="success-alert">Password updated successfully</h3>
+        <h3 *ngIf="errorMessageInPassForm.length > 0" class="error-alert">{{errorMessageInPassForm}}</h3>
         <div class="input-field">
           <label class="title" for="oldPass">Old Password: </label>
-          <input id="oldPass" type="password" [(ngModel)]="oldPasswordFieldValue" [ngClass]="{
-            'error': errorMessage.length > 0 }" (focus)="checkForError()" >
+          <input id="oldPass" type="password" [(ngModel)]="oldPasswordInPassForm" [ngClass]="{
+            'error': errorMessageInPassForm.length > 0 }" (focus)="checkForErrors('passwordChangeForm')" >
         </div>
 
         <div class="input-field">
           <label class="title" for="newPass">New Password: </label>
           <input id="newPass" type="password" [(ngModel)]="newPasswordFieldValue" [ngClass]="{
-            'error':errorMessage.length > 0 }" (focus)="checkForError()">
+            'error':errorMessageInPassForm.length > 0 }" (focus)="checkForErrors('passwordChangeForm')">
         </div>
 
-        <button (click)="updatePassword(oldPasswordFieldValue, newPasswordFieldValue)" class="cool-button">OK </button>
+        <button (click)="updatePassword(oldPasswordInPassForm, newPasswordFieldValue)" class="cool-button">OK </button>
       </div>
 
-      <input type="text" [(ngModel)]="newEmail">
-      <button (click)="updateEmail()">Update email</button>
+<!--      <input type="text" [(ngModel)]="newEmail">-->
+<!--      <button (click)="updateEmail()">Update email</button>-->
     </div>
   </div>
 </div>

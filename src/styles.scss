@@ -48,6 +48,12 @@ body {
   &:disabled {
     filter: grayscale(1) opacity(0.5);
   }
+  &.rounded {
+    border-radius: 20px;
+  }
+  &.txt-small {
+    font-size: 12px;
+  }
 }
 
 .bright-text {
