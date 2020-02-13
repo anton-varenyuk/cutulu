@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { SpeechService } from '../../services/speech.service';
 import { IUserProfile } from '../../interfaces/IUserProfile';
+import { IMyAccOptions } from '../../interfaces/IMyAccOptions';
 
 @Component({
   selector: 'app-myaccount',
@@ -10,25 +11,29 @@ import { IUserProfile } from '../../interfaces/IUserProfile';
 })
 export class MyaccountComponent implements OnInit {
 
-  private userInfoEditable: boolean;
-  private userPasswordEditable: boolean;
-  private passwordIsUpdatedRecently: boolean;
   private userData: any;
   private newPasswordFieldValue: string;
-  private oldPasswordFieldValue: string;
-  private errorMessage: string;
+  private oldPasswordInPassForm: string;
+  private oldPasswordInEmailForm: string;
+  private errorMessageInPassForm: string;
+  private errorMessageInEmailForm: string;
   private userProfile: IUserProfile;
-
-
-  private newEmail: string;
+  private settings: IMyAccOptions;
+  private newEmailInEmailForm: string;
 
   constructor(private auth: AuthService,
               private speech: SpeechService) {
-    this.userInfoEditable = false;
-    this.userPasswordEditable = false;
-    this.passwordIsUpdatedRecently = false;
-    this.errorMessage = '';
 
+    this.settings = {
+      userInfoEditable: false,
+      userPasswordEditable: false,
+      passwordIsUpdatedRecently: false,
+      emailUpdatedRecently: false,
+      userEmailEditable: false
+    };
+
+    this.errorMessageInPassForm = '';
+    this.errorMessageInEmailForm = '';
     this.userData = this.auth.getUserInfo();
     this.userProfile = {
       displayName: this.userData.displayName
@@ -40,45 +45,63 @@ export class MyaccountComponent implements OnInit {
   ngOnInit() {
   }
 
-  private editProfile(): void {
-    this.userInfoEditable = true;
+  private editEnable(property: string): void {
+    this.settings[property] = true;
   }
 
   private updatePassword(oldPassword: string, newPassword: string): void {
     this.auth.updatePassword(oldPassword, newPassword).then( () => {
-      this.passwordIsUpdatedRecently = true;
-      this.cleanForm();
+      this.settings.passwordIsUpdatedRecently = true;
+      this.cleanPassForm();
     }).catch(error => {
-      this.errorMessage = error.message;
-      this.speech.speak('aa-a-a-a-a-a-a-aa-a-a-a-a-aa! Erro-o-or' +
-        ' suuukaaa-aa-aa-a-a-a-a-a!');
+      this.errorMessageInPassForm = error.message;
     });
   }
 
-  private cleanForm(): void {
-    this.errorMessage = '';
-    this.newPasswordFieldValue = '';
-    this.oldPasswordFieldValue = '';
+  private updateEmail(oldPassword: string, newEmail: string): void {
+    this.auth.updateEmail(oldPassword, newEmail).then( () => {
+      this.settings.emailUpdatedRecently = true;
+    }).catch(error => {
+      this.errorMessageInEmailForm = error.message;
+      console.log(error);
+    });
+  }
 
-    if (this.passwordIsUpdatedRecently) {
+  private cleanPassForm(): void {
+    this.errorMessageInPassForm = '';
+    this.newPasswordFieldValue = '';
+    this.oldPasswordInPassForm = '';
+
+    if (this.settings.passwordIsUpdatedRecently) {
       setTimeout( () => {
-        this.passwordIsUpdatedRecently = false;
+        this.settings.passwordIsUpdatedRecently = false;
       }, 3000);
     }
   }
 
-  private checkForError(): void {
-    if (this.errorMessage.length > 0) {
-      this.cleanForm();
+  private cleanEmailForm(): void {
+    this.errorMessageInEmailForm = '';
+    this.newEmailInEmailForm = '';
+    this.oldPasswordInEmailForm = '';
+
+    if (this.settings.emailUpdatedRecently) {
+      setTimeout( () => {
+        this.settings.emailUpdatedRecently = false;
+      }, 3000);
     }
   }
 
-  private updateEmail(): void {
-    this.auth.updateEmail(this.oldPasswordFieldValue, this.newEmail);
+  private checkForErrors(where: string): void {
+    if (where === 'passwordChangeForm' && this.errorMessageInPassForm.length > 0) {
+      this.cleanPassForm();
+    }
+    if (where === 'emailChangeForm' && this.errorMessageInEmailForm.length > 0) {
+      this.cleanEmailForm();
+    }
   }
 
   private updateProfile(): void {
-    this.userInfoEditable = false;
+    this.settings.userInfoEditable = false;
     this.userData.updateProfile({ displayName: this.userProfile.displayName });
   }
 

@@ -19,11 +19,10 @@
     padding: 5px;
     font-size: 14px;
     box-sizing: border-box;
-
-    &.error {
-      border: 1px solid #fb5035;
-    }
   }
+}
+.error {
+  border: 1px solid #fb5035;
 }
 
 .error-alert {
@@ -42,6 +41,22 @@
 
 .input-field {
   margin: 10px 0;
+}
+
+.dropdown-block {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 10px;
+}
+
+.field {  // to change
+  font-size: 14px;
+  padding: 5px 5px 2px 10px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid black;
+  margin: 10px;
 }
 .interactive-text {
   color: #3c63be;

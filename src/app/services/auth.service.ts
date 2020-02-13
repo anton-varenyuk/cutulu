@@ -12,7 +12,6 @@ import { User } from 'firebase';
 
 export class AuthService {
 
-  // public uid: string;
   public isAuthorized: boolean;
   public userData: any;
   private userPassword: string;
@@ -90,7 +89,8 @@ export class AuthService {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password);
   }
 
-  public updateEmail(oldPassword: string , newEmail: string) {
+  public updateEmail(oldPassword: string , newEmail: string): Promise<void> {
+
     return new Promise((resolve, reject) => {
       this.authWithCreds(this.userData.email, oldPassword).then( (user) => {
         firebase.auth().currentUser.updateEmail(newEmail);
@@ -100,4 +100,5 @@ export class AuthService {
       });
     });
   }
+
 }
