@@ -4,6 +4,7 @@ import { StorageService } from '../../services/storage.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { AngularFireAuth} from '@angular/fire/auth';
+import Utils from '../../classes/utils';
 
 @Component({
   selector: 'app-sign-in-page',
@@ -12,7 +13,7 @@ import { AngularFireAuth} from '@angular/fire/auth';
 })
 export class SignInPageComponent implements OnInit {
 
-  private emailPattern = '[a-zA-Z0-9_~-]+(?:\\.[a-zA-Z0-9_~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])+';
+  private emailPattern: string = new Utils().emailPattern;
   private errorMessage: string;
 
   public loginForm = new FormGroup({
