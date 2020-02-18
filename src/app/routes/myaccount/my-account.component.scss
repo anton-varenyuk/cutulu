@@ -1,3 +1,5 @@
+@import "src/styles";
+
 .title {
   font-weight: bold;
 }
@@ -22,7 +24,12 @@
   }
 }
 .error {
-  border: 1px solid #fb5035;
+  border-color: #fb5035 !important;
+  color: #fb5035 !important;
+}
+
+.success {
+  animation: success 3s linear;
 }
 
 .error-alert {
@@ -47,7 +54,18 @@
   display: flex;
   flex-direction: column;
   width: 300px;
-  margin: 10px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.info-block {
+  padding-left: 10px;
+  margin-top: 10px;
+  border-left: 2px solid #525589;
+  width: 350px;
 }
 
 .field {  // to change
@@ -72,3 +90,10 @@
   padding-left: 10px;
 }
 
+@keyframes success {
+  from {
+    color: #0e8f20;
+  } to {
+    color: $color-type-primary;
+  }
+}

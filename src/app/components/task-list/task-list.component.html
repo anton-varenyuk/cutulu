@@ -1,19 +1,24 @@
 <ul class="task-list">
   <li *ngFor="let task of taskList; let i = index" class="task">
+    <div class="o-d" [routerLink]="['/list', task.id]">
     <div class="task--description">
 
-      <a [routerLink]="['/list', task.id]" class="task--text">{{task.name}}</a>
+      <a class="task--text">{{task.name}}</a>
     </div>
 
     <div>
       <div class="task--info">
-        <span>Description: </span><span >{{task.details}}</span>
+        <span> description: </span><span>{{task.details}}</span>
       </div>
 
-      <div class="task--description-controls">
-        <a [routerLink]="['/list', task.id]" class="simple-button">details</a>
-        <a (click)="deleteTask(task.id)" class="delete-marker"></a>
-      </div>
     </div>
+
+    </div>
+
+    <div class="task--description-controls">
+      <a (click)="deleteTask(task.id)" class="delete-marker"></a>
+    </div>
+
   </li>
 </ul>
+<button class="cool-button" [routerLink]="['/add']">ADD TASK</button>

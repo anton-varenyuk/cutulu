@@ -10,7 +10,7 @@ import { RainPageComponent } from './routes/rain-page/rain-page.component';
 import { SignUpPageComponent } from './routes/sign-up-page/sign-up-page.component';
 import { AuthGuard } from './guards/auth.guard';
 import { SignInPageComponent } from './routes/sign-in-page/sign-in-page.component';
-import { MyaccountComponent } from './routes/myaccount/myaccount.component';
+import { MyAccountComponent } from './routes/myaccount/my-account.component';
 
 const routes: Routes = [
   { path: 'list', component: ListPageComponent, canActivate: [AuthGuard] },
@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'game', component: GamePageComponent },
   { path: 'rain', component: RainPageComponent },
   { path: 'welcome', component: WelcomePageComponent },
-  { path: 'myaccount', component: MyaccountComponent, canActivate: [AuthGuard] },
+  { path: 'myaccount', component: MyAccountComponent, canActivate: [AuthGuard] },
   { path: 'register', component: SignUpPageComponent },
   { path: 'signin', component: SignInPageComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },

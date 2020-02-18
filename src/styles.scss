@@ -5,6 +5,7 @@ $gradient-main: linear-gradient(-45deg, #2d2c2e, #404146);
 $gradient-secondary: linear-gradient(-45deg, #aca8e0, #525589);
 $color-type-primary: #38393d;
 $border-color-primary: #e2e2e2;
+
 * {
   font-family: $font-type;
   margin: 0;
@@ -33,6 +34,7 @@ body {
   padding: 10px 15px;
   background: $gradient-main;
   border: none;
+  border-radius: 5px;
   color: #fff;
   font-size: 17px;
   letter-spacing: 2px;
@@ -72,16 +74,16 @@ body {
 }
 
 .simple-button {
-  border: 1px solid #3c63be;
-  color: #3c63be;
-  font-size: 13px;
-  text-decoration: none;
-  padding: 5px 10px;
-  border-radius: 10px;
+  @extend .cool-button;
+  background: transparent;
+  box-shadow: inset 0 0 0 2px $color-type-primary;
+  color: $color-type-primary;
   transition: all .1s ease-in-out;
+
   &:hover {
-    background-color: #3c63be;
+    background-color: $color-type-primary;
     color: #fff;
+    box-shadow: none;
   }
 }
 
@@ -100,6 +102,10 @@ body {
   border-radius: 5px;
   padding: 10px;
   margin: 10px;
+}
+
+.o-d {
+  outline: none;
 }
 
 @mixin glass {
