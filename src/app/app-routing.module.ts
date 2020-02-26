@@ -13,7 +13,7 @@ import { SignInPageComponent } from './routes/sign-in-page/sign-in-page.componen
 import { MyAccountComponent } from './routes/myaccount/my-account.component';
 
 const routes: Routes = [
-  { path: 'list', component: ListPageComponent, canActivate: [AuthGuard] },
+  { path: 'list', component: ListPageComponent, canActivate: [AuthGuard]},
   { path: 'list/:id', component: DetailsPageComponent, canActivate: [AuthGuard] },
   { path: 'add', component: CreatePageComponent, canActivate: [AuthGuard] },
   { path: 'game', component: GamePageComponent },
@@ -27,7 +27,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
+  imports: [ RouterModule.forRoot(routes)],
   exports: [ RouterModule ]
 })
 export class AppRoutingModule { }

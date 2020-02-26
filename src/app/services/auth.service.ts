@@ -5,6 +5,7 @@ import { StorageService } from './storage.service';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { User } from 'firebase';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ import { User } from 'firebase';
 
 export class AuthService {
 
-  public isAuthorized: boolean;
+  public isAuthorized = new BehaviorSubject(false);
   public userData: any;
   private userPassword: string;
   private user: User;
@@ -21,10 +22,13 @@ export class AuthService {
               private db: AngularFirestore,
               private storage: StorageService,
               private router: Router) {
+
     this.afAuth.user.subscribe(data => {
       console.log('User: ', data);
       this.userData = data;
-      this.isAuthorized = !!data;
+      // this.isAuthorized = !!data;
+      this.isAuthorized.next(!!data);
+      console.log('authorized? :', this.checkToken());
     });
 
     console.log(this.user);
@@ -59,7 +63,7 @@ export class AuthService {
   }
 
   public checkToken(): boolean {
-    return this.isAuthorized;
+    return this.isAuthorized.getValue();
   }
 
   public getUserInfo(): object {

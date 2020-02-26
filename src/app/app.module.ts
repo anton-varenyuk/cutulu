@@ -21,6 +21,8 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { SignInPageComponent } from './routes/sign-in-page/sign-in-page.component';
 import { MyAccountComponent } from './routes/myaccount/my-account.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { MyAccountComponent } from './routes/myaccount/my-account.component';
     RainPageComponent,
     SignUpPageComponent,
     SignInPageComponent,
-    MyAccountComponent
+    MyAccountComponent,
+    SearchBarComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
