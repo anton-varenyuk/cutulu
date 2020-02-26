@@ -1,5 +1,5 @@
 <ul class="task-list">
-  <li *ngFor="let task of taskList; let i = index" class="task">
+  <li *ngFor="let task of taskListData" class="task">
     <div class="o-d" [routerLink]="['/list', task.id]">
     <div class="task--description">
 
