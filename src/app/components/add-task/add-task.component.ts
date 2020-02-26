@@ -3,7 +3,7 @@ import { TaskService } from '../../services/task.service';
 
 
 @Component({
-  selector: 'app-add',
+  selector: 'add-task',
   templateUrl: './add-task.component.html',
   styleUrls: ['./add-task.component.scss']
 })

@@ -26,7 +26,6 @@ export class AuthService {
     this.afAuth.user.subscribe(data => {
       console.log('User: ', data);
       this.userData = data;
-      // this.isAuthorized = !!data;
       this.isAuthorized.next(!!data);
       console.log('authorized? :', this.checkToken());
     });
