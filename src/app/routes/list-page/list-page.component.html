@@ -1,8 +1,7 @@
 <div class="list-wrapper">
   <app-spinner *ngIf="spinner"></app-spinner>
   <div class="list-container" [ngClass]="{ 'veiled': spinner }">
-    <search-bar (search)="getFilteredTasks($event)"></search-bar>
-    <add-task></add-task>
+    <search-bar (search)="getFilteredTasks($event)" (cancel)="getAllTasks()"></search-bar>
     <task-list [taskListData]="taskList"></task-list>
   </div>
 </div>

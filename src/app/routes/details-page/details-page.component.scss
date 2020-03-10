@@ -1,10 +1,9 @@
+@import "./src/styles";
+
 .task-details {
-  padding: 20px;
-  border-radius: 3px;
-  background-color: darken(#fff, 5%);
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.43);
+  @extend .container;
+
   position: relative;
-  margin: 50px;
 
   .delete-marker {
     position: absolute;
@@ -16,6 +15,7 @@
     width: 5px;
     border: none;
     cursor: pointer;
+    margin: 0;
     background: url('/assets/images/x.svg') center no-repeat;
     transition: opacity 150ms ease-in-out;
 
@@ -24,21 +24,8 @@
     }
   }
 
-  .navigation {
-    margin-bottom: 20px;
-  }
-
   .task-details--item {
     margin-top: 20px;
-  }
-
-  .nav-back {
-    display: inline-block;
-    color: #3c63be;
-    font-style: italic;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all .1s ease;
   }
 
   .task-details--title {
@@ -69,19 +56,6 @@
     border: 1px solid #fbfbf7;
     outline: none;
   }
-  .ok-button {
-    margin: 5px;
-    border: none;
-    font-size: 14px;
-    padding: 5px 10px;
-    cursor: pointer;
-    transition: all .2s ease-in-out;
-    align-self: flex-end;
-    &:hover {
-      background-color: #59cc6d;
-      box-shadow: 0 0 6px rgba(0, 0, 0, .2), 0 0 2px 1px rgba(0, 0, 0, .1);
-    }
-  }
   .editor {
     display: flex;
     flex-direction: column;
@@ -103,17 +77,8 @@
     margin-top: 30px;
     display: flex;
     justify-content: flex-end;
-
-    button {
-      margin: 5px;
-      border: none;
-      font-size: 14px;
-      padding: 5px 10px;
-      cursor: pointer;
-      transition: all .2s ease-in-out;
-      &:hover {
-        box-shadow: 0 0 6px rgba(0, 0, 0, .2), 0 0 2px 1px rgba(0, 0, 0, .1);
-      }
-    }
   }
+}
+button {
+  margin: 10px 0;
 }

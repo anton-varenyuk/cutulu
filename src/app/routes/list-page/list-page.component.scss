@@ -7,14 +7,9 @@
   width: max-content;
 }
 .list-container {
-  margin: 50px 20px;
-  width: 500px;
-  max-width: 100%;
-  padding: 20px;
-  background: #f2f2f2;
+  @extend .container;
+
   position: relative;
-  border-radius: 3px;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.43);
   transition: all .3s linear;
 
   &.veiled {

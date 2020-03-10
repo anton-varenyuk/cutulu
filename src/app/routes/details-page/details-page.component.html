@@ -7,7 +7,7 @@
     <span class="task-label">Task name</span>
     <div class="editor" *ngIf="nameEditable === true">
       <textarea class="task-details--text" [(ngModel)]="task.name" autofocus>{{task?.name}}</textarea>
-      <button (click)="saveName()" class="cool-button">OK</button>
+      <button (click)="saveName()" class="simple-button">Submit</button>
     </div>
     <span class="task-details--text task-details--name" (click)="editName()"
           *ngIf="nameEditable === false">{{task?.name}}</span>
@@ -17,7 +17,7 @@
     <span class="task-label">Task details</span>
     <div class="editor" *ngIf="this.detailsEditable === true">
       <textarea class="task-details--text" [(ngModel)]="task.details" autofocus>{{task?.details}}</textarea>
-      <button (click)="saveDetails()" class="cool-button">OK</button>
+      <button (click)="saveDetails()" class="simple-button">Submit</button>
     </div>
     <span class="task-details--text" (click)="editDetails()" *ngIf="this.detailsEditable === false" >
     <span *ngIf="task?.details?.length === 0" class="details--placeholder"> Click here to add the details</span>

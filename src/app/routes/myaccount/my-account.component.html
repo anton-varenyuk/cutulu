@@ -1,124 +1,82 @@
 <div class="centrifier">
-  <div class="page-wrapper">
-    <h1 class="bright-text">MY ACCOUNT</h1>
-    <div class="info-container">
+  <div class="container">
+      <h1 class="bright-text">MY ACCOUNT</h1>
+      <div class="info-container">
 
-      <div class="info-block">
+        <div class="info-block">
 
-        <span class="title">Email: </span>
-        <span [ngClass]="{ 'success': settings.emailFieldIsUpdatedRecently }">{{userData?.email}}</span>
-        <span class="interactive-text" *ngIf="!settings.emailUpdateFieldIsEditable"
-              (click)="editToggle('emailUpdateFieldIsEditable')">change email</span>
+          <span class="title">Email: </span>
+          <span [ngClass]="{ 'success': settings.emailFieldIsUpdatedRecently }">{{userData?.email}}</span>
+          <span class="interactive-text" *ngIf="!settings.emailUpdateFieldIsEditable"
+                (click)="editToggle('emailUpdateFieldIsEditable')">change email</span>
 
-          <form [formGroup]="emailChangeForm" (ngSubmit)="updateEmail()" *ngIf="settings.emailUpdateFieldIsEditable" class="dropdown-block">
+            <form [formGroup]="emailChangeForm" (ngSubmit)="updateEmail()" *ngIf="settings.emailUpdateFieldIsEditable" class="dropdown-block">
+
+              <span *ngIf="settings.errorMessage.length > 0"
+                  class="error-message"> {{settings.errorMessage}}
+              </span>
+
+              <input [ngClass]="{ 'error': settings.errorMessage.length > 0 }"
+                     (focus)="checkForErrors('emailChangeForm')"
+                      class="field" type="password" formControlName="oldPassword" placeholder="your password">
+              <input [ngClass]="{ 'error': settings.errorMessage.length > 0 }"
+                     (focus)="checkForErrors('emailChangeForm')"
+                     class="field" type="email" formControlName="newEmail" placeholder="your new email">
+
+              <div class="button-container">
+                <button class="cool-button" type="submit" [disabled]="!emailChangeForm.valid">Submit</button>
+                <button class="simple-button" (click)="editToggle('emailUpdateFieldIsEditable')">Cancel</button>
+              </div>
+
+            </form>
+        </div>
+
+        <div class="info-block">
+          <span class="title">Display name: </span>
+          <span *ngIf="!settings.userInfoIsEditable">{{userProfile.displayName}}</span>
+          <input *ngIf="settings.userInfoIsEditable" [(ngModel)]="userProfile.displayName" type="text"
+                 class="username-input" autofocus>
+          <span class="interactive-text" *ngIf="!settings.userInfoIsEditable"
+                (click)="editToggle('userInfoIsEditable')">change display name </span>
+          <span class="interactive-text" *ngIf="settings.userInfoIsEditable" (click)="updateProfile()">Submit</span>
+        </div>
+
+        <div class="info-block">
+          <span class="title">Phone number: </span><span *ngIf="userData?.phoneNumber">{{userData?.phoneNumber}}</span>
+        </div>
+        <div class="info-block">
+          <span class="title">Registered: </span><span>{{userData?.metadata.creationTime}}</span>
+        </div>
+
+        <div class="info-block">
+          <span [ngClass]="{ 'success': settings.passwordIsUpdatedRecently }"
+            *ngIf="settings.passwordIsUpdatedRecently">Password updated successfully!</span>
+          <span *ngIf="!settings.passwordUpdateFieldIsEditable"
+                (click)="editToggle('passwordUpdateFieldIsEditable')"
+                class="interactive-text">change password</span>
+
+          <form [formGroup]="passwordChangeForm" (ngSubmit)="updatePassword()"
+                *ngIf="settings.passwordUpdateFieldIsEditable" class="dropdown-block">
 
             <span *ngIf="settings.errorMessage.length > 0"
-                class="error-message"> {{settings.errorMessage}}
+                  class="error-message"> {{settings.errorMessage}}
             </span>
 
             <input [ngClass]="{ 'error': settings.errorMessage.length > 0 }"
-                   (focus)="checkForErrors('emailChangeForm')"
-                    class="field" type="password" formControlName="oldPassword" placeholder="your password">
+                   (focus)="checkForErrors('passwordChangeForm')"
+                   class="field" type="password" formControlName="oldPassword" placeholder="your password">
             <input [ngClass]="{ 'error': settings.errorMessage.length > 0 }"
-                   (focus)="checkForErrors('emailChangeForm')"
-                   class="field" type="email" formControlName="newEmail" placeholder="your new email">
+                   (focus)="checkForErrors('passwordChangeForm')"
+                   class="field" type="password" formControlName="newPassword" placeholder="your new password">
 
             <div class="button-container">
-              <button class="cool-button" type="submit" [disabled]="!emailChangeForm.valid">OK</button>
-              <button class="simple-button" (click)="editToggle('emailUpdateFieldIsEditable')">CANCEL</button>
+              <button class="cool-button" type="submit" [disabled]="!passwordChangeForm.valid">Submit</button>
+              <button class="simple-button" (click)="editToggle('passwordUpdateFieldIsEditable')">Cancel</button>
             </div>
 
           </form>
-
-
-
-
-
-
-
+        </div>
 
       </div>
-
-      <div class="info-block">
-        <span class="title">Display name: </span>
-        <span *ngIf="!settings.userInfoIsEditable">{{userProfile.displayName}}</span>
-        <input *ngIf="settings.userInfoIsEditable" [(ngModel)]="userProfile.displayName" type="text"
-               class="username-input" autofocus>
-        <span class="interactive-text" *ngIf="!settings.userInfoIsEditable"
-              (click)="editToggle('userInfoIsEditable')">change display name </span>
-        <span class="interactive-text" *ngIf="settings.userInfoIsEditable" (click)="updateProfile()">OK</span>
-      </div>
-
-      <div class="info-block">
-        <span class="title">Phone number: </span><span *ngIf="userData?.phoneNumber">{{userData?.phoneNumber}}</span>
-      </div>
-      <div class="info-block">
-        <span class="title">Registered: </span><span>{{userData?.metadata.creationTime}}</span>
-      </div>
-
-
-
-
-
-
-
-
-      <div class="info-block">
-        <span [ngClass]="{ 'success': settings.passwordIsUpdatedRecently }"
-          *ngIf="settings.passwordIsUpdatedRecently">Password updated successfully!</span>
-        <span *ngIf="!settings.passwordUpdateFieldIsEditable"
-              (click)="editToggle('passwordUpdateFieldIsEditable')"
-              class="interactive-text">change password</span>
-
-        <form [formGroup]="passwordChangeForm" (ngSubmit)="updatePassword()"
-              *ngIf="settings.passwordUpdateFieldIsEditable" class="dropdown-block">
-
-          <span *ngIf="settings.errorMessage.length > 0"
-                class="error-message"> {{settings.errorMessage}}
-          </span>
-
-          <input [ngClass]="{ 'error': settings.errorMessage.length > 0 }"
-                 (focus)="checkForErrors('passwordChangeForm')"
-                 class="field" type="password" formControlName="oldPassword" placeholder="your password">
-          <input [ngClass]="{ 'error': settings.errorMessage.length > 0 }"
-                 (focus)="checkForErrors('passwordChangeForm')"
-                 class="field" type="password" formControlName="newPassword" placeholder="your new password">
-
-          <div class="button-container">
-            <button class="cool-button" type="submit" [disabled]="!passwordChangeForm.valid">OK</button>
-            <button class="simple-button" (click)="editToggle('passwordUpdateFieldIsEditable')">CANCEL</button>
-          </div>
-
-        </form>
-
-
-
-<!--        <h3 *ngIf="settings.passwordIsUpdatedRecently" class="success-alert">Password updated successfully</h3>-->
-<!--        <h3 *ngIf="errorMessageInPassForm.length > 0" class="error-alert">{{errorMessageInPassForm}}</h3>-->
-<!--        <div class="input-field">-->
-<!--          <label class="title" for="oldPass">Old Password: </label>-->
-<!--          <input id="oldPass" type="password" [(ngModel)]="oldPasswordInPassForm" [ngClass]="{-->
-<!--            'error': errorMessageInPassForm.length > 0 }" (focus)="checkForErrors('passwordChangeForm')" >-->
-<!--        </div>-->
-
-<!--        <div class="input-field">-->
-<!--          <label class="title" for="newPass">New Password: </label>-->
-<!--          <input id="newPass" type="password" [(ngModel)]="newPasswordFieldValue" [ngClass]="{-->
-<!--            'error':errorMessageInPassForm.length > 0 }" (focus)="checkForErrors('passwordChangeForm')">-->
-<!--        </div>-->
-
-<!--        <button (click)="updatePassword(oldPasswordInPassForm, newPasswordFieldValue)" class="cool-button">OK </button>-->
-      </div>
-
-
-
-
-
-
-
-
-
-
-    </div>
   </div>
 </div>
