@@ -1,17 +1,12 @@
-
+@import "./src/styles";
 
 .task-details {
-  padding: 20px;
-  border-radius: 3px;
-  background-color: darken(#fff, 5%);
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.43);
-  width: fit-content;
-  margin: 50px;
+  @extend .container;
 
   .task-details--title {
     margin: 0 0 10px 0;
-    font-size: 18px;
-    font-weight: normal;
+    font-size: 20px;
+    text-align: center;
     text-transform: uppercase;
   }
   input,
@@ -21,7 +16,7 @@
     font-size: 16px;
   }
   input {
-    width: 500px;
+    width: 100%;
   }
   label {
     display: block;
@@ -30,9 +25,16 @@
   }
   textarea {
     display: block;
+    min-height: 100px;
     height: 200px;
-    min-width: 500px;
-    max-width: 500px;
+    min-width: 100%;
+    max-width: 100%;
   }
+}
 
+.button-container {
+  text-align: center;
+}
+.navigation {
+  margin: 0;
 }

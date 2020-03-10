@@ -23,9 +23,10 @@
       position: relative;
       text-decoration: none;
       padding-bottom: 5px;
-      transition: all .2s ease-in-out;
+      transition: all .1s linear;
+      border-bottom: 4px solid transparent;
       &:hover {
-        border-bottom: 4px solid $color-type-primary;
+        border-bottom: 4px solid $gradient-color-two;
       }
     }
 

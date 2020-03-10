@@ -1,3 +1,7 @@
-<span>Search task by name</span>
-<input type="text" [(ngModel)]="query" class="input-rounded">
-<button  class="btn-rounded" (click)="searchTasks(query)">🔍</button>
+<span class="input-label">Search task by name</span>
+<div class="searchbar-container">
+  <input type="text" [(ngModel)]="query" class="input-rounded controls">
+  <button  class="search-btn" (click)="searchTasks(query)" *ngIf="!searchOccured" [disabled]="!query"></button>
+  <button  class="cancel-btn" (click)="cancelSearch()" *ngIf="searchOccured"></button>
+</div>
+

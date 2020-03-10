@@ -1,11 +1,16 @@
 <div class="centrifier">
   <div class="task-details">
-    <h2 class="task-details--title">new task</h2>
+    <div class="navigation">
+      <a [routerLink]="['/list']" class="nav-back">back</a>
+    </div>
+    <h2 class="task-details--title bright-text">new task</h2>
     <label for="name">Task name</label>
     <input [(ngModel)]="name" id="name">
     <label for="description">Task description</label>
     <textarea [(ngModel)]="desc" id="description"></textarea>
-    <button class="cool-button" (click)="validateAndAdd()">Submit</button>
+    <div class="button-container">
+      <button class="cool-button submit" (click)="validateAndAdd()">Submit</button>
+    </div>
   </div>
 </div>
 

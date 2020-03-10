@@ -2,40 +2,43 @@
 
 input {
   margin-bottom: 20px;
-  font-size: 18px;
-  width: 300px;
-  padding: 5px;
 }
 
-.input-rounded {
-  border-radius: 20px 0 0 20px;
-  border: 1px solid $border-color-primary;
-}
-
-.btn-rounded {
-  border-radius: 50%;
-  width: 37px;
-  height: 37px;
-  padding: 5px;
-  font-size: 16px;
-  font-weight: bold;
-  margin-left: 10px;
-  cursor: pointer;
-  color: #fff;
-  background: $gradient-main;
-  transform: translateY(-1px);
-  transition: all .3s ease-in-out;
+.search-btn {
+  width: 30px;
+  height: 30px;
+  background: url('/assets/images/search.png') center no-repeat;
+  background-size: 40%;
   border: none;
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all .2s linear;
   &:hover {
-    box-shadow: 0 0 10px 0 rgba(0,0,0,.7);
+    background-color: $border-color-primary;
   }
+}
+
+.cancel-btn {
+  @extend .search-btn;
+  background: url('/assets/images/cancel.png') center no-repeat;
+  background-size: 70%;
+}
+
+.searchbar-container {
+  position: relative;
+  display: inline-block;
 }
 
 span {
   display: block;
   font-size: 14px;
   font-weight: bold;
+  margin-bottom: 5px;
 }
+
 button {
   font-size: 16px;
 }

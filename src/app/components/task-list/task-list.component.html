@@ -1,16 +1,16 @@
 <ul class="task-list">
+  <li *ngIf="taskListData?.length === 0" class="no-tasks-msg">No tasks</li>
   <li *ngFor="let task of taskListData" class="task">
     <div class="o-d" [routerLink]="['/list', task.id]">
     <div class="task--description">
 
-      <a class="task--text">{{task.name}}</a>
+      <a class="task--name">{{task.name}}</a>
     </div>
 
     <div>
       <div class="task--info">
         <span> description: </span><span>{{task.details}}</span>
       </div>
-
     </div>
 
     </div>
@@ -21,4 +21,8 @@
 
   </li>
 </ul>
-<button class="cool-button" [routerLink]="['/add']">ADD TASK</button>
+
+<div class="button-container">
+  <button class="cool-button plus" [routerLink]="['/add']">Add task</button>
+</div>
+
