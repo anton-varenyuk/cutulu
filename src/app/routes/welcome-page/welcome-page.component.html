@@ -1,9 +1,9 @@
 <div class="centrifier">
   <div class="page-wrapper c-c-v">
-    <div>
+    <div *ngIf="showContent">
       <h1><span class="bright-text header">CÜTÜLU</span></h1>
 
-      <div *ngIf="!checkToken()">
+      <div *ngIf="!showLoginControls">
         <span>Log in to use task list feature...</span>
         <span>or enjoy your stay here!</span>
         <div class="button-container">
@@ -13,7 +13,7 @@
         </div>
       </div>
 
-      <div *ngIf="checkToken()">
+      <div *ngIf="showLoginControls">
         <span>You can now use the Task List feature</span>
         <div class="button-container">
           <button class="cool-button" routerLink="/list"> Task List </button>

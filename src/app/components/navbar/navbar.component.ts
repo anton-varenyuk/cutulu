@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit {
   }
 
   private checkToken(): boolean {
-    return this.auth.checkToken();
+    return !!this.auth.getUserInfo();
   }
 
   private logOut(): void {
@@ -27,7 +27,7 @@ export class NavbarComponent implements OnInit {
   }
 
   private cutulu() {
-    this.speech.speak('CÜtÜlÜ aaappppppp!');
+    this.speech.speak('CÜtÜlÜ!');
   }
 
 }

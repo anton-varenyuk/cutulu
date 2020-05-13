@@ -32,17 +32,3 @@ export class AuthGuard implements CanActivate {
     }
 }
 
-// map(res => {
-//   if (res) {
-//     console.log(res);
-//     return true;
-//   } else {
-//     return false;
-//   }
-// })
-
-// setTimeout( () => {
-//   map(res => !!res);
-// }, 2000 )
-// );
-
