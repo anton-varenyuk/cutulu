@@ -1,5 +1,6 @@
 <div class="centrifier">
-  <div class="page-wrapper c-c-v">
+  <app-spinner *ngIf="spinner"></app-spinner>
+  <div class="page-wrapper c-c-v" [ngClass]="{ 'veiled': spinner }">
     <div *ngIf="showContent">
       <h1><span class="bright-text header">CÜTÜLU</span></h1>
 

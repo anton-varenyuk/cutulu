@@ -31,7 +31,6 @@ export class DetailsPageComponent implements OnInit {
     });
   }
   private editDetails(): void {
-    console.log(this.task);
     this.detailsEditable = true;
   }
   private saveDetails(): void {

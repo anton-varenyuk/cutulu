@@ -16,4 +16,8 @@ export class StorageService {
   public set(key: string, value: string): void {
      this.storage.setItem(key, value);
   }
+
+  public delete(key: string ): void {
+    this.storage.removeItem(key);
+  }
 }

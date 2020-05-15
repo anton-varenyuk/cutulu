@@ -14,7 +14,6 @@ export class TaskService {
 
   private uid: string;
   public task: ITask;
-  // public searchResults: Array<ITask>;
   public taskList: Array<ITask>;
 
   constructor( private storage: StorageService,
@@ -38,12 +37,10 @@ export class TaskService {
   public getUnfilteredTasks() {
     this.getAllTasks().subscribe((data: Array<ITask>) => {
       this.taskList = data;
-      console.log(' unfiltered Tasklist: ', this.taskList);
     });
   }
 
   public searchTasks(query: string): Array<ITask> {
-    console.log('task service query: ', query);
     const searchResults = [];
 
     this.db.collection('users').doc(this.uid)
@@ -64,8 +61,8 @@ export class TaskService {
     return this.db.collection('users').doc(this.uid).collection('tasks').doc(taskId);
   }
 
-  public addTask(name: string, details: string): void {
-    this.db.collection('users').doc(this.uid).collection('tasks').add({name: name, details: details});
+  public addTask(taskName: string, taskDetails: string): void {
+    this.db.collection('users').doc(this.uid).collection('tasks').add({name: taskName, details: taskDetails});
   }
 
   public deleteTask(id: string): void {

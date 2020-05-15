@@ -12,15 +12,6 @@ span {
   margin: 20px;
 }
 
-@keyframes color-spin {
-  0% {
-    filter: hue-rotate(0deg);
-  } 50% {
-    filter: hue-rotate(180deg);
-  } 100% {
-    filter: hue-rotate(360deg);
-  }
-}
 
 .header {
   font-size: 120px;

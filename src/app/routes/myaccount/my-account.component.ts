@@ -5,6 +5,8 @@ import {IUserProfile} from '../../interfaces/IUserProfile';
 import MyAccPageSettings, {IEmailFormValue, IPassFormValue} from '../../classes/myAccPageSettings';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import Utils from '../../classes/utils';
+import {Observable} from 'rxjs';
+import {User} from 'firebase';
 
 @Component({
   selector: 'app-myaccount',
@@ -14,10 +16,10 @@ import Utils from '../../classes/utils';
 
 export class MyAccountComponent implements OnInit {
 
-  private userData: any;
   private userProfile: IUserProfile;
-  private settings: MyAccPageSettings;
+  readonly settings: MyAccPageSettings;
   private emailPattern: string = new Utils().emailPattern;
+  private userData: User;
 
   private emailChangeForm = new FormGroup({
     oldPassword: new FormControl('', [Validators.required]),
@@ -30,19 +32,18 @@ export class MyAccountComponent implements OnInit {
   });
 
 
-  constructor(private auth: AuthService,
-              private speech: SpeechService) {
+  constructor( private auth: AuthService ) {
 
     this.settings = new MyAccPageSettings();
-    this.userData = this.auth.getUserInfo();
     this.userProfile = {
-      displayName: this.userData.displayName
+      displayName: this.auth.getUserObj().displayName
     };
+    this.auth.checkUserData().subscribe(data => {
+      this.userData = data;
+    });
   }
 
-  ngOnInit() {
-    console.log(this.emailPattern);
-  }
+  ngOnInit() { }
 
   private getFormValue(formName: string): object {
     return this[formName].value;
@@ -52,7 +53,7 @@ export class MyAccountComponent implements OnInit {
     this.settings[property] = !this.settings[property];
   }
 
-  private updatePassword(oldPassword: string, newPassword: string): void {
+  private updatePassword(oldPassword?: string, newPassword?: string): void {
     const formValue = this.getFormValue('passwordChangeForm') as IPassFormValue;
 
     this.auth.updatePassword(formValue.oldPassword, formValue.newPassword).then(() => {
@@ -65,7 +66,7 @@ export class MyAccountComponent implements OnInit {
     });
   }
 
-  private updateEmail(oldPassword: string, newEmail: string): void {
+  private updateEmail(oldPassword?: string, newEmail?: string): void {
     const formValue = this.getFormValue('emailChangeForm') as IEmailFormValue;
 
     this.auth.updateEmail(formValue.oldPassword, formValue.newEmail).then(() => {
@@ -75,7 +76,6 @@ export class MyAccountComponent implements OnInit {
       this.hideMsg('emailFieldIsUpdatedRecently');
     }).catch(error => {
       this.settings.errorMessage = error.message;
-      console.log(error);
     });
   }
 
@@ -96,7 +96,7 @@ export class MyAccountComponent implements OnInit {
 
   private updateProfile(): void {
     this.settings.userInfoIsEditable = false;
-    this.userData.updateProfile({displayName: this.userProfile.displayName});
+    this.auth.getUserObj().updateProfile({displayName: this.userProfile.displayName});
   }
 
 }
