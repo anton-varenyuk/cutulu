@@ -11,8 +11,6 @@ import { ErrorPageComponent } from './routes/error-page/error-page.component';
 import { DetailsPageComponent } from './routes/details-page/details-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CreatePageComponent } from './routes/create-page/create-page.component';
-import { GamePageComponent } from './routes/game-page/game-page.component';
-import { RainPageComponent } from './routes/rain-page/rain-page.component';
 import { SignUpPageComponent } from './routes/sign-up-page/sign-up-page.component';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
@@ -35,8 +33,6 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     DetailsPageComponent,
     NavbarComponent,
     CreatePageComponent,
-    GamePageComponent,
-    RainPageComponent,
     SignUpPageComponent,
     SignInPageComponent,
     MyAccountComponent,

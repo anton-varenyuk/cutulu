@@ -1,22 +1,20 @@
 <div class="centrifier">
-  <div class="navBar">
+  <div *ngIf="showContent" class="navBar">
     <ul>
-      <li><a [routerLink]="['/welcome']" (click)="cutulu()">Home</a></li>
-      <li *ngIf="checkToken()"><a [routerLink]="['/list']" (click)="cutulu()">Task List</a></li>
-      <li *ngIf="checkToken()"><a [routerLink]="['add']" (click)="cutulu()">Add task</a></li>
-      <li><a [routerLink]="['game']" id="game" (click)="cutulu()">Green guy torment</a></li>
-      <li><a [routerLink]="['rain']" id="rain" (click)="cutulu()">Golden rain</a></li>
+      <li><a [routerLink]="['/welcome']" (click)="voiceResponse()">Home</a></li>
+      <li *ngIf="loggedIn"><a [routerLink]="['/list']" (click)="voiceResponse()">Task List</a></li>
+      <li *ngIf="loggedIn"><a [routerLink]="['add']" (click)="voiceResponse()">Add task</a></li>
     </ul>
   </div>
 
-  <ul class="logIn">
-    <li *ngIf="checkToken(); else login">
+  <ul *ngIf="showContent" class="logIn">
+    <li *ngIf="loggedIn; else login">
       <a [routerLink]="['myaccount']">My account</a>
       <a (click)="logOut()">Logout</a>
     </li>
     <ng-template #login>
-      <li><a [routerLink]="['register']" (click)="cutulu()">Register</a></li>
-      <li><a [routerLink]="['signin']" (click)="cutulu()">Sign in</a></li>
+      <li><a [routerLink]="['register']" (click)="voiceResponse()">Register</a></li>
+      <li><a [routerLink]="['signin']" (click)="voiceResponse()">Sign in</a></li>
     </ng-template>
   </ul>
 </div>

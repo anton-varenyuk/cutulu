@@ -4,8 +4,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { StorageService } from './storage.service';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {User} from "firebase";
+import { Observable } from 'rxjs';
+import { User } from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,6 @@ import {User} from "firebase";
 
 export class AuthService {
 
-  public authState = new BehaviorSubject(null);
   public userData: User;
   private userPassword: string;
 
@@ -21,15 +20,26 @@ export class AuthService {
               private db: AngularFirestore,
               private storage: StorageService,
               private router: Router) {
-
-    this.checkUserData();
   }
 
-  private async checkUserData(): Promise<any> {
-    await this.afAuth.user.subscribe(data => {
-      this.userData = data;
-      this.authState.next(data);
+  public checkUserData(): Observable<any> {
+
+    return new Observable<any>(subscriber => {
+      return this.afAuth.user.subscribe(data => {
+        if (data) {
+          this.setUserObj(data);
+        }
+        subscriber.next(data);
+      });
     });
+  }
+
+  private setUserObj(value): void {
+    this.userData = value;
+  }
+
+  public getUserObj(): User {
+    return this.userData;
   }
 
   public signUp( email, password ): Promise<object> {
@@ -60,18 +70,9 @@ export class AuthService {
     });
   }
 
-  public checkToken(): boolean {
-    return this.authState.getValue();
-  }
-
-  public getUserInfo(): object {
-    return this.userData;
-  }
-
   public logOut(): void {
     this.afAuth.auth.signOut();
-    this.storage.set('uid', '');
-    this.authState.next(null);
+    this.storage.delete('uid');
     this.router.navigate(['welcome']);
   }
 

@@ -9,7 +9,7 @@
     <label for="description">Task description</label>
     <textarea [(ngModel)]="desc" id="description"></textarea>
     <div class="button-container">
-      <button class="cool-button submit" (click)="validateAndAdd()">Submit</button>
+      <button class="cool-button submit" [disabled]="validateBtn(name.length)" (click)="validateAndAdd()">Submit</button>
     </div>
   </div>
 </div>

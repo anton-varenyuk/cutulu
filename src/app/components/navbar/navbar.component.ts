@@ -1,32 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { SpeechService } from '../../services/speech.service';
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
+
+  private loggedIn: boolean;
+  private showContent: boolean;
+  private subscription: Subscription;
 
   constructor(private auth: AuthService,
               private afAuth: AngularFireAuth,
-              private speech: SpeechService) { }
+              private speech: SpeechService) {
 
-  ngOnInit() {
-    console.log('token is: ', this.checkToken());
+    this.showContent = false;
   }
 
-  private checkToken(): boolean {
-    return !!this.auth.getUserInfo();
+  ngOnInit() {
+    this.subscription = this.auth.checkUserData().subscribe(data => {
+      this.loggedIn = !!data;
+      this.showContent = true;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   private logOut(): void {
     this.auth.logOut();
   }
 
-  private cutulu() {
+  private voiceResponse() {
     this.speech.speak('CÜtÜlÜ!');
   }
 

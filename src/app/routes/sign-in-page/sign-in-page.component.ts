@@ -31,9 +31,7 @@ export class SignInPageComponent implements OnInit {
 
   public signIn(): void {
     this.auth.signIn(this.creds('email'), this.creds('password')).catch(err => {
-
       this.errorMessage = err.message;
-      console.log(this.errorMessage);
     });
   }
 

@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-welcome-page',
@@ -7,31 +8,28 @@ import {AuthService} from '../../services/auth.service';
   styleUrls: ['./welcome-page.component.scss']
 })
 
-export class WelcomePageComponent implements OnInit {
+export class WelcomePageComponent implements OnInit, OnDestroy {
 
   private showContent: boolean;
   private showLoginControls: boolean;
+  private spinner: boolean;
+  private subscription: Subscription;
 
   constructor( private auth: AuthService ) {
-    this.showContent = false;
+    this.spinner = true;
+    this.showLoginControls = true;
   }
 
   ngOnInit() {
-    this.userDataCheck();
+    this.subscription = this.auth.checkUserData().subscribe(data => {
+      this.showLoginControls = !!data;
+      this.showContent = true;
+      this.spinner = false;
+    });
   }
 
-  private userDataCheck(): void {
-
-    this.auth.authState.subscribe(data => {
-
-      if (typeof data === 'object' && data !== null) {
-        this.showContent = true;
-        this.showLoginControls = true;
-      } else {
-        this.showLoginControls = false;
-        this.showContent = true;
-      }
-    });
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }
